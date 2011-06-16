@@ -1,0 +1,8 @@
+---
+layout: "post"
+title: "QEDWiki"
+time: 23:00:00
+categories: 
+- cool
+---
+ Came across <a href="http://files.zend.com/qedwiki/">this screencast</a> on the <a href="http://devzone.zend.com/">Zend DevZone</a> site. It's an IBM project based around a Wiki with 'extras'. Not much to say about it except wow! This is what AJAX-enhanced websites should be.

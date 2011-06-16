@@ -1,4 +1,23 @@
 ---
 layout: default
 ---
-This is the index page.
+
+<h2>Ramblings of a random software engineer</h2>
+<div id="metadata">Geek, software architect/developer, photographer and entrepreneur. A mostly harmless human.</div>
+
+<div id="info">
+	<a href="http://stut.net/">Stuart Dallas</a> is a <a href="http://3ft9.com/">Software Engineer</a>, a <a href="http://stuartdallas.com/">Photographer</a>, a <a href="http://twitter.com/stut">Twitterer</a>, a <a href="http://www.facebook.com/stuartdallas">Facebooker</a>, a <a href="http://www.flickr.com/photos/stuartdallas/">Flickrer</a>, and an <a href="http://tastingtheacorn.com/">honest blogger</a>. He also dabbles in being human, friendly, helpful and sarcastic.
+</div>
+<div id="postlist">
+{% for post in site.posts limit:10 %}
+	<div><a href="{{ post.url }}">{{ post.title }}</a><span style="color:#ccc;"> on {{ post.date | date: "%B %d, %Y" }}</span></div>
+{% endfor %}
+{% if site.posts.size > 20 %}
+	<div id="morepostslink"><a href="#" onclick="document.getElementById('moreposts').style.display='block';document.getElementById('morepostslink').style.display='none';">Show all {{ site.posts.size }} posts...</a></div>
+	<div id="moreposts" style="display:none;">
+	{% for post in site.posts offset:20 %}
+		<div><a href="{{ post.url }}">{{ post.title }}</a><span style="color:#ccc;"> on {{ post.date | date: "%B %d, %Y" }}</span></div>
+	{% endfor %}
+	</div>
+{% endif %}
+</div>

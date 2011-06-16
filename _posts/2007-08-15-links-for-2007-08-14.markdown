@@ -1,0 +1,19 @@
+---
+layout: "post"
+title: "links for 2007-08-14"
+time: 00:30:08
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.sr.se/p1/src/sing/">Let them sing it for you</a></div>
+		<div>Cracking idea, pretty well done too. You type in some words and it plays a snippet of a song for each word. Very cool.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/song">song</a> <a href="http://del.icio.us/stuartdallas/fun">fun</a> <a href="http://del.icio.us/stuartdallas/flash">flash</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://www.engadget.com/2007/08/13/iphone-bill-unboxed-by-justine-tv/">iPhone bill unboxed by i-Justine</a></div>
+		<div>AT&amp;T should be fined for doing this. It's daft. And in the current age of high technology it should be against the law to generate this amount of paper, especially when it contains nothing useful.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/funny">funny</a> <a href="http://del.icio.us/stuartdallas/video">video</a> <a href="http://del.icio.us/stuartdallas/iphone">iphone</a>)</div>
+	</li>
+</ul>

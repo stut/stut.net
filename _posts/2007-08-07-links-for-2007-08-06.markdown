@@ -1,0 +1,20 @@
+---
+layout: "post"
+title: "links for 2007-08-06"
+time: 00:29:36
+categories: 
+- misc
+---
+
+<ul>
+	<li><a href="http://www.techcrunch.com/2007/08/05/microsoft-photosynth-covers-shuttle-endeavour-pre-launch/">Microsoft Photosynth Covers Shuttle Endeavour Pre-Launch</a>
+
+If you haven't seen Photosynth yet you need to. This is an excellent event to use to show of the technology.
+
+(tags: <a href="http://del.icio.us/stuartdallas/microsoft">microsoft</a> <a href="http://del.icio.us/stuartdallas/photosynth">photosynth</a> <a href="http://del.icio.us/stuartdallas/technology">technology</a>)</li>
+	<li><a href="http://munjal.typepad.com/recognizing_deven/2007/08/iphone-sucks-bu.html">iPhone sucks buy Blackberry stock</a>
+
+I thought the iPhone was too good to be true. Unfortunately I'm going to have to wait until at least the end of this year to get my hands on one.
+
+(tags: <a href="http://del.icio.us/stuartdallas/apple">apple</a> <a href="http://del.icio.us/stuartdallas/iphone">iphone</a> <a href="http://del.icio.us/stuartdallas/gadgets">gadgets</a>)</li>
+</ul>

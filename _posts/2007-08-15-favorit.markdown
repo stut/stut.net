@@ -1,0 +1,10 @@
+---
+layout: "post"
+title: "fav.or.it"
+time: 14:13:35
+categories: 
+- misc
+---
+A friend of mine has today launched a preview of <a href="http://fav.or.it/" title="A community based feed reading system.">fav.or.it</a>, a "community based feed reading system". It looks really impressive and I strongly recommend you <a href="http://fav.or.it/index.php?page=movie" title="fav.or.it demonstration">check it out</a>.
+
+Also check out <a href="http://blog.assembleron.com/2007/08/15/favorit-preview-launched/" title="fav.or.it - A community based feed reading system">Nick's blog post on the launch</a>.

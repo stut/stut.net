@@ -1,0 +1,24 @@
+---
+layout: "post"
+title: "links for 2007-08-05"
+time: 00:26:57
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.scripting.com/stories/2007/08/05/carsWithWifi.html">Cars with wifi</a></div>
+		<div>This is spot on. I'd definitely prefer a car with wifi than one without. Of course that's not the only reason to buy one car over another, but it would be a big factor in my decision if it were available.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/car">car</a> <a href="http://del.icio.us/stuartdallas/technology">technology</a> <a href="http://del.icio.us/stuartdallas/wifi">wifi</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://www.bonafidereviews.com/article.php?id=224">The Secret behind Spore</a></div>
+		<div>Nice overview of the power of procedural programming (or, more accurately, procedural generation).</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/programming">programming</a> <a href="http://del.icio.us/stuartdallas/spore">spore</a> <a href="http://del.icio.us/stuartdallas/games">games</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://dilbertblog.typepad.com/the_dilbert_blog/2007/08/not-worried-abo.html">The Dilbert Blog: Not Worried About the Future</a></div>
+		<div>Wow!</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/future">future</a> <a href="http://del.icio.us/stuartdallas/religion">religion</a>)</div>
+	</li>
+</ul>

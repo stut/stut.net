@@ -1,0 +1,186 @@
+.highlight {
+    background: none repeat scroll 0 0 #000000;
+    border-radius: 6px 6px 6px 6px;
+    margin-bottom: 1em;
+    overflow: auto;
+    padding: 1em;
+}
+pre, code, tt {
+    font: 0.8em/1.2 'monaco','andale mono','lucida console',monospace;
+}
+pre {
+    color: white;
+    font-size: 1em;
+    margin: 0;
+    white-space: pre;
+}
+.hll {
+    background-color: #E6E1DC;
+}
+.c {
+    color: #BC9458;
+    font-style: italic;
+}
+.err {
+    color: #FFC66D;
+}
+.k {
+    color: #FF6600;
+}
+.n {
+    color: #F0F0F0;
+}
+.o {
+    color: #F0F0F0;
+}
+.p {
+    color: #F0F0F0;
+}
+.cm {
+    color: #BC9458;
+    font-style: italic;
+}
+.cp {
+    color: #BC9458;
+    font-style: italic;
+}
+.c1 {
+    color: #BC9458;
+    font-style: italic;
+}
+.cs {
+    color: #BC9458;
+    font-style: italic;
+}
+.kc {
+    color: #CC7833;
+}
+.kd {
+    color: #CC7833;
+}
+.kn {
+    color: #CC7833;
+}
+.kp {
+    color: #CC7833;
+}
+.kr {
+    color: #DA4939;
+}
+.kt {
+    color: #5A647E;
+}
+.m {
+    color: #A5C261;
+}
+.s {
+    color: #A5C261;
+}
+.na {
+    color: #DA4939;
+}
+.nb {
+    color: #FFCC00;
+}
+.nc {
+    color: #FFC66D;
+}
+.no {
+    color: #6D9CBE;
+}
+.nd {
+    color: #DA4939;
+}
+.ni {
+    color: #F0F0F0;
+}
+.ne {
+    color: #F0F0F0;
+}
+.nf {
+    color: #FFCC00;
+}
+.nl {
+    color: #F0F0F0;
+}
+.nn {
+    color: #F0F0F0;
+}
+.nx {
+    color: #F0F0F0;
+}
+.py {
+    color: #F0F0F0;
+}
+.nt {
+    color: #E8BF6A;
+}
+.nv {
+    color: #F0F0F0;
+}
+.ow {
+    color: #CC7833;
+}
+.w {
+    color: #F0F0F0;
+}
+.mf {
+    color: #A5C261;
+}
+.mh {
+    color: #A5C261;
+}
+.mi {
+    color: #A5C261;
+}
+.mo {
+    color: #A5C261;
+}
+.sb {
+    color: #A5C261;
+}
+.sc {
+    color: #A5C261;
+}
+.sd {
+    color: #A5C261;
+}
+.s2 {
+    color: #66FF00;
+}
+.se {
+    color: #DA4939;
+}
+.sh {
+    color: #A5C261;
+}
+.si {
+    color: #A5C261;
+}
+.sx {
+    color: #FFFFFF;
+}
+.sr {
+    color: #A5C261;
+}
+.s1 {
+    color: #A5C261;
+}
+.ss {
+    color: #339999;
+}
+.bp {
+    color: #F0F0F0;
+}
+.vc {
+    color: #F0F0F0;
+}
+.vg {
+    color: #F0F0F0;
+}
+.vi {
+    color: #F0F0F0;
+}
+.il {
+    color: #A5C261;
+}

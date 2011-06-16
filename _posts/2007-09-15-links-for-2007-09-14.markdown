@@ -1,0 +1,14 @@
+---
+layout: "post"
+title: "links for 2007-09-14"
+time: 00:39:19
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.flickr.com/photos/hence/524002815/">mari</a></div>
+		<div>Excellent photo. Great technique and a lovely subject.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/photography">photography</a>)</div>
+	</li>
+</ul>

@@ -1,0 +1,24 @@
+---
+layout: "post"
+title: "links for 2007-09-03"
+time: 00:26:55
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.aglassandahalffullproductions.com/">Cadbury Dairy Milk - Glass and a Half Full Productions</a></div>
+		<div>Bloody brilliant ad - makes me want to buy a drum kit!</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/viral">viral</a> <a href="http://del.icio.us/stuartdallas/funny">funny</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://www.samsungmobile.com/promotion/i600/index.jsp">Samsung Mobile :: Upgrade Your Ultra Messaging i600 to Windows Mobile 6</a></div>
+		<div>Not happy! Not happy at all!!!!! A couple of weeks ago this page had a GB flag which when clicked on it said the upgrade would be available here. That flag has now gone. WTF?!?</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/windows">windows</a> <a href="http://del.icio.us/stuartdallas/samsung">samsung</a> <a href="http://del.icio.us/stuartdallas/upgrade">upgrade</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://www.businesspundit.com/50226711/switching_to_mac_is_great.php">Businesspundit: Switching To Mac is Great</a></div>
+		<div>This is an honest *opinion* from someone who tried switching to a Mac and didn't like it. Why does the Mac community insist on giving themselves a bad name by abusing people who disagree with them? Do they really think they're helping?? Read the comments.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/apple">apple</a>)</div>
+	</li>
+</ul>

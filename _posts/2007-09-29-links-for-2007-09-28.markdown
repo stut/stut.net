@@ -1,0 +1,13 @@
+---
+layout: "post"
+title: "links for 2007-09-28"
+time: 00:30:05
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.mpdailyfix.com/2007/09/bring_your_inner_child_to_work.html">Bring Your (Inner) Child to Work Day</a></div>
+		<div>Be mature, act responsibly, but don't ever grow up!</div>
+	</li>
+</ul>

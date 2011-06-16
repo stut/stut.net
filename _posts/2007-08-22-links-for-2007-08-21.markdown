@@ -1,0 +1,29 @@
+---
+layout: "post"
+title: "links for 2007-08-21"
+time: 00:29:58
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://leonmeijer.nl/archive/2007/05/07/25.aspx">Resize a VMWare disk</a></div>
+		<div>Needed to do this today, Googled and found this.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/virtualization">virtualization</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://www.youtube.com/watch?v=89JiZws0mcU">Facebook iPhone Application Rocks!</a></div>
+		<div>A great demo of the Facebook app for the iPhone. It really does look impressive, and personally I think more web-based apps should be like this, both on and off mobile devices.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/iphone">iphone</a> <a href="http://del.icio.us/stuartdallas/technology">technology</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://www.collegehumor.com/video:1764124">Dramatic Chipmunk</a></div>
+		<div>Can't believe I haven't seen this before now!</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/funny">funny</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://www.engadget.com/2007/08/21/solidalliances-usb-rc-mini-finally-something-we-want/">SolidAlliance's USB RC Mini</a></div>
+		<div>Seriously cool, err, toy!</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/games">games</a>)</div>
+	</li>
+</ul>

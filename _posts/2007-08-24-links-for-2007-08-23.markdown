@@ -1,0 +1,14 @@
+---
+layout: "post"
+title: "links for 2007-08-23"
+time: 00:35:44
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.neatorama.com/2007/08/18/if-business-meetings-were-like-internet-comments/">If Business Meetings Were Like Internet Comments</a></div>
+		<div>It's funny 'cause it's true. Warning: strong language, not that most of my readers will care.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/video">video</a> <a href="http://del.icio.us/stuartdallas/funny">funny</a> <a href="http://del.icio.us/stuartdallas/business">business</a>)</div>
+	</li>
+</ul>

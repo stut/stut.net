@@ -1,0 +1,19 @@
+---
+layout: "post"
+title: "links for 2007-08-17"
+time: 00:25:15
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.squidoo.com/videosthatchange/">Videos that can change your organisation</a></div>
+		<div>Lots of words of wisdom... with pictures!</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/business">business</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://successfulsoftware.net/2007/08/16/the-software-awards-scam/">The software awards scam</a></div>
+		<div>It's unfortunate that I'm not surprised by this. It just goes to show that trust is still an unsolved problem on the Interweb.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/software">software</a> <a href="http://del.icio.us/stuartdallas/awards">awards</a>)</div>
+	</li>
+</ul>

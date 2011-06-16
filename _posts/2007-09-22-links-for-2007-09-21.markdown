@@ -1,0 +1,14 @@
+---
+layout: "post"
+title: "links for 2007-09-21"
+time: 00:30:10
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://ap.google.com/article/ALeqM5hY4qGm1zcwVgM74krLbd4eMB3Shg">Family Sues Phone Company Over Ad</a></div>
+		<div>Story about the use of a Flickr photo in an ad campaign. The photographer had licensed the photo for use by others, but surely that photographer must have a model release in order to legally provide that license, in which case the girl and her family dese</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/photography">photography</a>)</div>
+	</li>
+</ul>

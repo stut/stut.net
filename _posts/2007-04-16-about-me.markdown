@@ -1,0 +1,44 @@
+---
+layout: "post"
+title: "About me"
+time: 23:00:00
+categories: 
+- misc
+---
+Ok, so I've not posted for a while. That's mainly because I don't really have anything interesting to say. To keep you going during this dry spell I thought I'd post my answers to some questions we were asked at work. This is destined for the company intranet if it ever gets launched.
+<blockquote><strong>Name
+</strong>Stuart Dallas
+
+<strong>Job Title
+</strong>Application Developer
+
+<strong>Extension Number
+</strong>Not important enough to get a phone
+
+<strong>Star Sign
+</strong>Capricorn
+
+<strong>Favourite film
+</strong>Serenity
+
+<strong>Favourite book
+</strong>The Hitch Hikers Guide to the Galaxy
+
+<strong>Favourite food</strong>
+Sandwiches, specifically BLTs
+
+<strong>If you could be an animal, what would you be and why?</strong>
+A penguin, because I want to be able to tap dance on snow!
+
+<strong>If you could be a superhero for one day, who would you be and why?</strong>
+Doctor Who. Not really sure why.
+
+<strong>Motto in life
+</strong>If you want something, go after it. Period.
+
+<strong>Favourite quote
+</strong>"All our dreams can come true, if we have the courage to pursue them." <em>Walt Disney</em>.
+
+<strong>Name one thing you would like to do before you die
+</strong>Make a difference.</blockquote>
+So there it is. Exciting wasn't it?!!

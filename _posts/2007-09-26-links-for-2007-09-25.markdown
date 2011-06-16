@@ -1,0 +1,13 @@
+---
+layout: "post"
+title: "links for 2007-09-25"
+time: 00:38:11
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.henryscat.com/">The official home of Henry's Cat</a></div>
+		<div>For some strange reason this blast from the past came up on the PHP mailing list today. Takes me back!</div>
+	</li>
+</ul>

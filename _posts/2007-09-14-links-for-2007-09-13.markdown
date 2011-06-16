@@ -1,0 +1,18 @@
+---
+layout: "post"
+title: "links for 2007-09-13"
+time: 00:34:51
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.thinkgeek.com/homeoffice/gear/9400/?cpg=58T">ThinkGeek :: "Back Off" LED Invaders Door Mat</a></div>
+		<div>It scares me that there may be people out there who will pay 90 bucks for one of these.</div>
+	</li>
+	<li>
+		<div><a href="http://www.collegehumor.com/video:1774935">MS-DOS 5 Upgrade Video</a></div>
+		<div>Classic!</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/funny">funny</a> <a href="http://del.icio.us/stuartdallas/video">video</a>)</div>
+	</li>
+</ul>

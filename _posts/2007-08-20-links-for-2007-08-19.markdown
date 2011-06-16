@@ -1,0 +1,14 @@
+---
+layout: "post"
+title: "links for 2007-08-19"
+time: 00:22:54
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://photografr.com/2007/08/19/aint-singin-in-the-rain/">Ain’t Singin’ in the Rain</a></div>
+		<div>You've gotta feel sorry for them. Great photo, and I hope they still had a great day.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/photography">photography</a>)</div>
+	</li>
+</ul>

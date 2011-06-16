@@ -1,0 +1,10 @@
+---
+layout: "post"
+title: "IT Vision"
+time: 23:00:00
+categories: 
+- misc
+---
+Most of you will know that I started working for a new company in February. Most of you will also know that what we've been doing has been under NDA for a while now. Well not any more.
+<p style="text-align: center"><a href="http://www.itvision.net/">WWW.ITVISION.NET</a></p>
+If you are involved with a school or college please point them at our website. We believe that <a href="http://www.itvision.net/parago.html">Parago</a>, our product, will prove invaluable to all types and sizes of schools and colleges. If they or you need any further information please don't hesitate to contact me.

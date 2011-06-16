@@ -1,0 +1,19 @@
+---
+layout: "post"
+title: "links for 2007-08-27"
+time: 00:31:01
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.1up.com/do/previewPage?cId=3162206">Spore Preview</a></div>
+		<div>Shame EA didn't give they guy enough time to get a bit further into the game, but by this account it's looking good. I do wonder whether it's going to be too complicated for most people to bother with, but time will tell.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/games">games</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://scplugin.tigris.org/">SCPlugin</a></div>
+		<div>Essentially TortoiseSVN for OSX, which is fantastic. Not installed it yet, but as soon as my new MacBook Pro arrives you can be sure I will.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/development">development</a> <a href="http://del.icio.us/stuartdallas/osx">osx</a>)</div>
+	</li>
+</ul>

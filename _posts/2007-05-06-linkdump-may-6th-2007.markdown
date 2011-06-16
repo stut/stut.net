@@ -1,0 +1,16 @@
+---
+layout: "post"
+title: "Linkdump - May 6th, 2007"
+time: 22:15:41
+categories: 
+- misc
+---
+
+<ul>
+	<li>Seth Godin tells us that <a href="http://sethgodin.typepad.com/seths_blog/2007/05/thinking_about__1.html" title="The magic of auctions">successful ebayers are irrational</a>.</li>
+	<li><a href="http://www.techcrunch.com/2007/05/05/google-testing-new-search-results-layout/" title="Google testing new search results layout">Rumours of a Google redesign</a> are reported at TechCrunch.</li>
+	<li>Duct Tape Marketing discusses <a href="http://www.ducttapemarketing.com/weblog.php?id=P1033" title="What's in your name?">choosing company names</a>, something I've had to tackle recently but more on that soon.</li>
+	<li>"A new way to look at networking", <a href="http://video.google.com/videoplay?docid=-6972678839686672840&amp;hl=en" title="A new way to look at networking">a very interesting Google Tech Talk by Van Jacobson</a> was <a href="http://slashdot.org/articles/07/05/06/1252210.shtml" title="How a modern, global network could work more effectively, and with more trust in the data which changes many hands on its journey to its final destination">posted on Slashdot</a>.</li>
+	<li><a href="http://dilbertblog.typepad.com/the_dilbert_blog/2007/05/who_won_wwii.html" title="Who won WWII?">Do you know who won World War II?</a> Scott Adams isn't sure.</li>
+	<li>And finally, I try to decide whether the bullet points in these linkdump posts should have full stops. Answers on a postcard.</li>
+</ul>

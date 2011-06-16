@@ -1,0 +1,19 @@
+---
+layout: "post"
+title: "links for 2007-09-11"
+time: 00:34:52
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.themorningnews.org/archives/galleries/still_life/04sl.php">Still Life</a></div>
+		<div>Damn clever photography technique that creates fantastically poetic images.</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/photography">photography</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://sethgodin.typepad.com/seths_blog/2007/09/lets-make-up-so.html">Let's make up some numbers</a></div>
+		<div>Shocking numbers published by the MPAA put in context by Seth Godin. Did they really think nobody would pick them up on this? And why didn't the Times think about the numbers for two seconds before publishing??</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/technology">technology</a>)</div>
+	</li>
+</ul>

@@ -1,0 +1,19 @@
+---
+layout: "post"
+title: "links for 2007-08-15"
+time: 00:33:46
+categories: 
+- misc
+---
+<ul>
+	<li>
+		<div><a href="http://www.adaptivepath.com/blog/category/charmr-project/">Charmr Project from Adaptive Path</a></div>
+		<div>The future of diabetes management devices!! (hopefully)</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/diabetes">diabetes</a> <a href="http://del.icio.us/stuartdallas/design">design</a> <a href="http://del.icio.us/stuartdallas/technology">technology</a>)</div>
+	</li>
+	<li>
+		<div><a href="http://xkcd.com/303/">xkcd - A webcomic of romance, sarcasm, math, and language - By Randall Munroe</a></div>
+		<div>Too true!</div>
+		<div>(tags: <a href="http://del.icio.us/stuartdallas/funny">funny</a> <a href="http://del.icio.us/stuartdallas/programming">programming</a>)</div>
+	</li>
+</ul>
