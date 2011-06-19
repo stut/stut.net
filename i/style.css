@@ -67,6 +67,11 @@ strong {
 	font-weight: bold;
 }
 
+blockquote {
+	font-style: italic;
+	margin: 0.5em 1.5em 1em 1.5em;
+}
+
 .indented {
 	padding-left: 1.5em;
 }

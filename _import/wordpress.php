@@ -1,13 +1,8 @@
 <?php
-	include 'markdownify_extra.php';
-	$leap = MDFY_LINKS_EACH_PARAGRAPH;
-	$keephtml = MDFY_KEEPHTML;
-	$md = new Markdownify_Extra($leap, MDFY_BODYWIDTH, $keephtml);
-
 	$outputroot = realpath($_SERVER['argv'][1]).'/';
 
-	$db = mysql_connect('localhost', 'root', 'epsilon9032') or die("Connect failed\n");
-	mysql_select_db('stut', $db) or die("Select failed\n");
+	$db = mysql_connect('localhost', 'root', '') or die("Connect failed\n");
+	mysql_select_db('stutdotnet', $db) or die("Select failed\n");
 
 	$query1 = mysql_query('select * from wp_posts where post_type = "post" and post_status = "publish"');
 
