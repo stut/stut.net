@@ -2,7 +2,7 @@
 layout: "post"
 title: "Snippet: Cookie class for PHP"
 time: 21:20:51
-categories: 
+categories:
 - misc
 ---
 Today's snippet is a complete class for normalising cookie usage. In addition to providing methods to set and get cookies you can also check to see if a cookie exists, is empty and delete them without needing to concern yourself with more detail than necessary. Features include...
@@ -12,7 +12,9 @@ Today's snippet is a complete class for normalising cookie usage. In addition to
 	<li>Pre-defined time spans allow for simple cookie management.</li>
 	<li>Sensible defaults throughout.</li>
 </ul>
-<pre class="brush: php">class Cookie
+
+{% highlight php startinline %}
+class Cookie
 {
   const Session = null;
   const OneDay = 86400;
@@ -113,12 +115,24 @@ Today's snippet is a complete class for normalising cookie usage. In addition to
     }
     return $retval;
   }
-}</pre>
+}
+{% endhighlight %}
+
 Some example usage...
-<pre class="brush: php">// Style preference, persists only until the browser is closed
-Cookie::Set('style', 'black_and_orange', Cookie::Session);</pre>
-<pre class="brush: php">// Remember the users email address to pre-fill the login form when they return
-Cookie::Set('rememberme', 'email@domain.com', Cookie::ThirtyDays);</pre>
-<pre class="brush: php">// Tracking cookie that effectively lasts forever
-Cookie::Set('tracking', 'sdfoiwuyo8who8wfhow8fhso4', Cookie::Lifetime, '/', '.domain.com');</pre>
+
+{% highlight php startinline %}
+// Style preference, persists only until the browser is closed
+Cookie::Set('style', 'black_and_orange', Cookie::Session);
+{% endhighlight %}
+
+{% highlight php startinline %}
+// Remember the users email address to pre-fill the login form when they return
+Cookie::Set('rememberme', 'email@domain.com', Cookie::ThirtyDays);
+{% endhighlight %}
+
+{% highlight php startinline %}
+// Tracking cookie that effectively lasts forever
+Cookie::Set('tracking', 'sdfoiwuyo8who8wfhow8fhso4', Cookie::Lifetime, '/', '.domain.com');
+{% endhighlight %}
+
 Comments, questions, suggestions and requests are welcomed as always.
