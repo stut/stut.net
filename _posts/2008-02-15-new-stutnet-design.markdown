@@ -2,15 +2,15 @@
 layout: "post"
 title: "New Stut.net design"
 time: 03:55:25
-categories: 
+categories:
 - misc
-tags: 
+tags:
 - design
 - redesign
 - content
 ---
 
-<p style="float: right; margin-left: 5px"><a href="http://stut.net/" class="nb" title="New Stut.net design screenshot"><img src="http://stut.net/blog/wp-content/uploads/2008/02/2008-02-15_0314.thumbnail.png" alt="New Stut.net design screenshot" /></a></p>
+<p style="float: right; margin-left: 5px"><a href="/assets/2008-02-15_0314.png" title="New Stut.net design screenshot"><img src="/assets/2008-02-15_0314.thumbnail.png" alt="New Stut.net design screenshot" /></a></p>
 Must be that time of year again... yet another redesign for <a href="http://stut.net/" title="Stut.net, the personal website of Stuart Dallas">Stut.net</a>.
 
 I've not been liking the old dark and heavy design for a while now, but it's taken me a while to find inspiration. The new design is what I would call semi-heavy. The header is pretty dense but the main content area is spacious and completely customisable on a per-page basis. Hopefully this will make the content more readable.

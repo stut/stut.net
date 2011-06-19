@@ -2,16 +2,18 @@
 layout: "post"
 title: "PHP Models"
 time: 21:42:27
-categories: 
+categories:
 - misc
-tags: 
+tags:
 - php
 - activerecord
 ---
 I wanted an object-oriented way of accessing a database that strikes a good balance between abstracting the details of SQL escaping, insert or update, etc and going too far to the point where the benefits are drowned out by the abstraction. In this article I present the system I am currently using. It does most of what I wanted but certainly has potential for further improvement.
 
-The main reason this post exists is due to a request from someone on the PHP-General list. This code is not intended to be bug-free or extensively tested or indeed anything. Treat it as you would any other experimental code.<!--more-->
-<h2>Design</h2>
+The main reason this post exists is due to a request from someone on the PHP-General list. This code is not intended to be bug-free or extensively tested or indeed anything. Treat it as you would any other experimental code.
+
+<h3>Design</h3>
+
 The basic design of this system is based around a base class called <em>Table</em>. Fundamentally the <em>Table</em> class wraps a database table row. When using a system like this it is important to keep in mind what the memory implications are, but more on that later.
 
 When an instance of a subclass of the <em>Table</em> class is created, it gets the table definition from either the database or a definition cache. The cache is file-based and is considerably quicker than getting the definition from the database every time. The definition for any given table is loaded only once per request. The only important implication of this is that if the table definition changes you need to delete the cache file to force it to be loaded from the database again.
@@ -19,663 +21,668 @@ When an instance of a subclass of the <em>Table</em> class is created, it gets t
 One last thing... the class relies upon the primary key to perform updates, so it's vital that any tables you want to use with this system have one.
 
 Ok, nuff talk, let's get to the code!
-<h2>Implementation</h2>
-Probably the easiest thing to do is to go through the two classes piece by piece. Rather than describe the code and force you to match up my ramblings with a separate file of code, I've commented the source liberally. Let's start with the <em>Table</em> class.
-<pre class="brush: php">&lt;?php
- // Table: An ActiveRecord-style DB abstraction class
- // Copyright (c) 2005-2006 Stuart Dallas
- // Released into the public domain with absolutely no warranty, explicit, implied or otherwise
- // Use at your own risk!! 
 
-// If you do use this code please drop an email to code@stut.net and let me know why ;-)
- // Patches, comments, suggestions, questions, etc are welcomed
+<h3>Implementation</h3>
+
+Probably the easiest thing to do is to go through the two classes piece by piece. Rather than describe the code and force you to match up my ramblings with a separate file of code, I've commented the source liberally. Let's start with the <em>Table</em> class.
+
+{% highlight php %}
+<?php
+// Table: An ActiveRecord-style DB abstraction class
+// Copyright (c) 2005-2006 Stuart Dallas
+// Released into the public domain with absolutely no warranty, explicit, implied or otherwise
+// Use at your own risk!!
+
+// If you do use this code please drop an email to code at stut dot net and let me know why ;)
+// Patches, comments, suggestions, questions, etc are welcomed
 
 // The MODEL_CACHE_DIR is where the table definitions get cached. This can be anywhere you like, defaults to cache/
- // in the same location as this file. Obviously the web user (usually nobody or www) needs to have write access to
- // this directory.
- define('MODEL_CACHE_DIR', dirname(__FILE__).'/cache/');
- // Make sure the directory exists, or try to create it if not
- if (!file_exists(MODEL_CACHE_DIR))
- 	mkdir(MODEL_CACHE_DIR) or die('Failed to create model cache directory on line '.__LINE__.' of '.__FILE__);
+// in the same location as this file. Obviously the web user (usually nobody or www) needs to have write access to
+// this directory.
+define('MODEL_CACHE_DIR', dirname(__FILE__).'/cache/');
+// Make sure the directory exists, or try to create it if not
+if (!file_exists(MODEL_CACHE_DIR))
+		mkdir(MODEL_CACHE_DIR) or die('Failed to create model cache directory on line '.__LINE__.' of '.__FILE__);
 
 class Table
- {
- 	protected $table = '';					// What table does this map to
- 	protected $idfield = 'id';				// If there is an ID field, but it's not called id, override this
- 	protected $readonly = false;			// Access to this table is read only
- 	protected $data = false;				// Internal array of row data
- 	protected $dirty = false;				// Is this row dirty?
- 	protected $disregarddirty = false;		// Do we care that it's dirty?
- 	protected $isnew = true;				// Is it a new row?
- 	protected $customfieldtypes = array();	// Overrides of the default field types (for automatic form creation)
+{
+		protected $table = '';					// What table does this map to
+		protected $idfield = 'id';				// If there is an ID field, but it's not called id, override this
+		protected $readonly = false;			// Access to this table is read only
+		protected $data = false;				// Internal array of row data
+		protected $dirty = false;				// Is this row dirty?
+		protected $disregarddirty = false;		// Do we care that it's dirty?
+		protected $isnew = true;				// Is it a new row?
+		protected $customfieldtypes = array();	// Overrides of the default field types (for automatic form creation)
 
 protected static $fields = array();		// Per-request cache of the table definitions
 
 // Init is called by the constructors of subclasses
- 	// It is responsible for loading the table definition
- 	public function Init($classname, $conditions = '', $order = '')
- 	{
- 		// Have we been called statically or dynamically?
- 		// Either way we need an instance to work with
- 		if (isset($this))
- 			$obj = &amp;$this;
- 		else
- 			$obj = new $classname();
+		// It is responsible for loading the table definition
+		public function Init($classname, $conditions = '', $order = '')
+		{
+			// Have we been called statically or dynamically?
+			// Either way we need an instance to work with
+			if (isset($this))
+				$obj = &amp;$this;
+			else
+				$obj = new $classname();
 
 // The table variable should be set by the subclass, if not use the class name
- 		if ($obj-&gt;table == '')
- 			$obj-&gt;table = strtolower($classname);
+			if ($obj->table == '')
+				$obj->table = strtolower($classname);
 
 // Only load the field defs if this model has not been used yet in this request
- 		if (!isset(self::$fields[$obj-&gt;table]))
- 		{
- 			// Build the base filename of the cache files for this table
- 			$cachefilename = MODEL_CACHE_DIR.$obj-&gt;table;
+			if (!isset(self::$fields[$obj->table]))
+			{
+				// Build the base filename of the cache files for this table
+				$cachefilename = MODEL_CACHE_DIR.$obj->table;
 
 // Does the field definition cache file exist? If not we need to build it
- 			if (!file_exists($cachefilename.'.fields'))
- 			{
- 				// Initialise the cache (stored statically in the Table class)
- 				self::$fields[$obj-&gt;table]['fields'] = array();
- 				self::$fields[$obj-&gt;table]['autonumber'] = array();
- 				self::$fields[$obj-&gt;table]['primarykey'] = array();
+				if (!file_exists($cachefilename.'.fields'))
+				{
+					// Initialise the cache (stored statically in the Table class)
+					self::$fields[$obj->table]['fields'] = array();
+					self::$fields[$obj->table]['autonumber'] = array();
+					self::$fields[$obj->table]['primarykey'] = array();
 
 // Get the field definitions
- 				$query = mysql_query('show columns from '.$obj-&gt;table);
- 				while ($row = mysql_fetch_assoc($query))
- 				{
- 					// We store auto_number fields separately for use when creating new rows
- 					if (strpos($row['Extra'], 'auto_increment') !== false)
- 						self::$fields[$obj-&gt;table]['autonumber'][] = $row['Field'];
- 					else
- 						self::$fields[$obj-&gt;table]['fields'][$row['Field']] = $row;
- 				}
+					$query = mysql_query('show columns from '.$obj->table);
+					while ($row = mysql_fetch_assoc($query))
+					{
+						// We store auto_number fields separately for use when creating new rows
+						if (strpos($row['Extra'], 'auto_increment') !== false)
+							self::$fields[$obj->table]['autonumber'][] = $row['Field'];
+						else
+							self::$fields[$obj->table]['fields'][$row['Field']] = $row;
+					}
 
 // Get the primary key fields
- 				$query = mysql_query('show indexes from '.$obj-&gt;table);
- 				while ($row = mysql_fetch_assoc($query))
- 				{
- 					if ($row['Key_name'] == 'PRIMARY')
- 						self::$fields[$obj-&gt;table]['primarykey'][] = $row['Column_name'];
- 				}
+					$query = mysql_query('show indexes from '.$obj->table);
+					while ($row = mysql_fetch_assoc($query))
+					{
+						if ($row['Key_name'] == 'PRIMARY')
+							self::$fields[$obj->table]['primarykey'][] = $row['Column_name'];
+					}
 
 // Now save the definition in files in the model cache directory
- 				file_put_contents($cachefilename.'.fields', serialize(self::$fields[$obj-&gt;table]['fields']));
- 				file_put_contents($cachefilename.'.autonumber', serialize(self::$fields[$obj-&gt;table]['autonumber']));
- 				file_put_contents($cachefilename.'.primarykey', serialize(self::$fields[$obj-&gt;table]['primarykey']));
- 			}
- 			else
- 			{
- 				// The cache files exist, load them
- 				self::$fields[$obj-&gt;table]['fields'] = unserialize(file_get_contents($cachefilename.'.fields'));
- 				self::$fields[$obj-&gt;table]['autonumber'] = unserialize(file_get_contents($cachefilename.'.autonumber'));
- 				self::$fields[$obj-&gt;table]['primarykey'] = unserialize(file_get_contents($cachefilename.'.primarykey'));
- 			}
- 		}
+					file_put_contents($cachefilename.'.fields', serialize(self::$fields[$obj->table]['fields']));
+					file_put_contents($cachefilename.'.autonumber', serialize(self::$fields[$obj->table]['autonumber']));
+					file_put_contents($cachefilename.'.primarykey', serialize(self::$fields[$obj->table]['primarykey']));
+				}
+				else
+				{
+					// The cache files exist, load them
+					self::$fields[$obj->table]['fields'] = unserialize(file_get_contents($cachefilename.'.fields'));
+					self::$fields[$obj->table]['autonumber'] = unserialize(file_get_contents($cachefilename.'.autonumber'));
+					self::$fields[$obj->table]['primarykey'] = unserialize(file_get_contents($cachefilename.'.primarykey'));
+				}
+			}
 
 // Did we get given conditions?
- 		if (strlen($conditions) &gt; 0)
- 		{
- 			// If it's numeric, use it as an ID and build a where clause. This relies upon the idfield member variable that
- 			// should be overridden in subclasses if the ID field is not named 'id'
- 			if (is_numeric($conditions))
- 			{
- 				$conditions = $this-&gt;idfield.' = '.Table::Escape($conditions);
- 			}
+			if (strlen($conditions) > 0)
+			{
+				// If it's numeric, use it as an ID and build a where clause. This relies upon the idfield member variable that
+				// should be overridden in subclasses if the ID field is not named 'id'
+				if (is_numeric($conditions))
+				{
+					$conditions = $this->idfield.' = '.Table::Escape($conditions);
+				}
 
 // Try to find a row matching the conditions
- 			if ($obj-&gt;FindFirst($conditions, $order) === false)
- 			{
- 				// Couldn't find one, reset this object so it's an unsaved new row
- 				$obj-&gt;Clear();
- 			}
- 		}
- 		else
- 		{
- 			// No conditions, it's an unsaved new row
- 			if($obj-&gt;data === false) $obj-&gt;Clear();
- 		}
- 	}
+				if ($obj->FindFirst($conditions, $order) === false)
+				{
+					// Couldn't find one, reset this object so it's an unsaved new row
+					$obj->Clear();
+				}
+			}
+			else
+			{
+				// No conditions, it's an unsaved new row
+				if($obj->data === false) $obj->Clear();
+			}
+		}
 
 // The destructor does nothing more than a sanity check to see if this row is dirty (i.e. contains unsaved data), in which
- 	// case it raises an error. The disregarddirty flag can be used to disable this where destroying a dirty object is expected
- 	public function __destruct()
- 	{
- 		if ($this-&gt;dirty &amp;&amp; !$this-&gt;disregarddirty)
- 			trigger_error(get_class($this).'.__destruct: Dirty object being released');
- 	}
+		// case it raises an error. The disregarddirty flag can be used to disable this where destroying a dirty object is expected
+		public function __destruct()
+		{
+			if ($this->dirty &amp;&amp; !$this->disregarddirty)
+				trigger_error(get_class($this).'.__destruct: Dirty object being released');
+		}
 
 // Ahh, magic functions!!
- 	// This one allows you to use OO syntax to access fields, e.g. $obj-&gt;id will get you the id field
- 	public function __get($field)
- 	{
- 		return (isset($this-&gt;data[$field]) ? $this-&gt;data[$field] : '');
- 	}
+		// This one allows you to use OO syntax to access fields, e.g. $obj->id will get you the id field
+		public function __get($field)
+		{
+			return (isset($this->data[$field]) ? $this->data[$field] : '');
+		}
 
-// The other half of __get is __set. This method is called if you do something like $obj-&gt;id = 100
- 	public function __set($field, $value)
- 	{
- 		// If we're read only then changing the data is not allowed
- 		if ($this-&gt;readonly)
- 		{
- 			trigger_error(get_class($this).'.__set: Attempt to modify a readonly object');
- 		}
- 		// If the row is not new then the primary key is read only
- 		elseif (!$this-&gt;isnew and in_array($field, self::$fields[$this-&gt;table]['primarykey']))
- 		{
- 			trigger_error(get_class($this).'.__set: Attempt to set primary key field "'.$field.'"');
- 		}
- 		// Now we check to make sure the attribute being set actually exists (i.e. is in the table fields or is already in the
- 		// data array)
- 		elseif (isset(self::$fields[$this-&gt;table]['fields'][$field]) or isset($this-&gt;data[$field]))
- 		{
- 			if (!isset($this-&gt;data[$field]) or $this-&gt;data[$field] != $value)
- 				$this-&gt;dirty = true;
- 			$this-&gt;data[$field] = $value;
- 		}
- 		// If we get here then we don't know anything about the field being set - that's an error that is!
- 		else
- 		{
- 			trigger_error(get_class($this).'.__set: Unknown field "'.$field.'"');
- 		}
- 	}
+// The other half of __get is __set. This method is called if you do something like $obj->id = 100
+		public function __set($field, $value)
+		{
+			// If we're read only then changing the data is not allowed
+			if ($this->readonly)
+			{
+				trigger_error(get_class($this).'.__set: Attempt to modify a readonly object');
+			}
+			// If the row is not new then the primary key is read only
+			elseif (!$this->isnew and in_array($field, self::$fields[$this->table]['primarykey']))
+			{
+				trigger_error(get_class($this).'.__set: Attempt to set primary key field "'.$field.'"');
+			}
+			// Now we check to make sure the attribute being set actually exists (i.e. is in the table fields or is already in the
+			// data array)
+			elseif (isset(self::$fields[$this->table]['fields'][$field]) or isset($this->data[$field]))
+			{
+				if (!isset($this->data[$field]) or $this->data[$field] != $value)
+					$this->dirty = true;
+				$this->data[$field] = $value;
+			}
+			// If we get here then we don't know anything about the field being set - that's an error that is!
+			else
+			{
+				trigger_error(get_class($this).'.__set: Unknown field "'.$field.'"');
+			}
+		}
 
 // LoadFromArray does what it says on the tin. It fills in the data for this record from an array
- 	private function LoadFromArray($arr)
- 	{
- 		$this-&gt;data = array();
+		private function LoadFromArray($arr)
+		{
+			$this->data = array();
 
 // Only allow fields we know about, ignore anything else
- 		foreach (array_keys(self::$fields[$this-&gt;table]['fields']) as $field)
- 			if (isset($arr[$field]))
- 				$this-&gt;data[$field] = $arr[$field];
- 		foreach (self::$fields[$this-&gt;table]['autonumber'] as $field)
- 			if (isset($arr[$field]))
- 				$this-&gt;data[$field] = $arr[$field];
+			foreach (array_keys(self::$fields[$this->table]['fields']) as $field)
+				if (isset($arr[$field]))
+					$this->data[$field] = $arr[$field];
+			foreach (self::$fields[$this->table]['autonumber'] as $field)
+				if (isset($arr[$field]))
+					$this->data[$field] = $arr[$field];
 
-// At first glance these might seem wrong, but this method is used when reading &gt; 1 row (see the FindAll method) and since it's
- 		// a private method we know the data source will always be the database, so it's not new and it's not dirty
- 		$this-&gt;dirty = false;
- 		$this-&gt;isnew = false;
+// At first glance these might seem wrong, but this method is used when reading > 1 row (see the FindAll method) and since it's
+			// a private method we know the data source will always be the database, so it's not new and it's not dirty
+			$this->dirty = false;
+			$this->isnew = false;
 
 // Call table-specific translation
- 		$this-&gt;AfterLoad();
- 	}
+			$this->AfterLoad();
+		}
 
 // Call this function to disable the error generated when a dirty object is destructed
- 	public function DisregardDirty()
- 	{
- 		$this-&gt;disregarddirty = true;
- 	}
+		public function DisregardDirty()
+		{
+			$this->disregarddirty = true;
+		}
 
 // Clear the object of data.
- 	protected function Clear()
- 	{
- 		$this-&gt;data = array();
- 	}
+		protected function Clear()
+		{
+			$this->data = array();
+		}
 
 // Stubs for table-specific stuff
- 	protected function AfterLoad() { }
- 	protected function BeforeSave() { }
- 	protected function AfterDelete($result) { }
- 	protected function BeforeDelete() { }
+		protected function AfterLoad() { }
+		protected function BeforeSave() { }
+		protected function AfterDelete($result) { }
+		protected function BeforeDelete() { }
 
 // GetFieldType first looks in the customfieldtypes array to see if the subclass has overridden it before returning the
- 	// field type from the table definition. If we don't know anything about the field, assume it's a string
- 	public function GetFieldType($field)
- 	{
- 		if (isset($this-&gt;customfieldtypes[$field]))
- 			return $this-&gt;customfieldtypes[$field];
- 		if (isset(self::$fields[$this-&gt;table]['fields'][$field]['Type']))
- 			return self::$fields[$this-&gt;table]['fields'][$field]['Type'];
- 		return 'string';
- 	}
+		// field type from the table definition. If we don't know anything about the field, assume it's a string
+		public function GetFieldType($field)
+		{
+			if (isset($this->customfieldtypes[$field]))
+				return $this->customfieldtypes[$field];
+			if (isset(self::$fields[$this->table]['fields'][$field]['Type']))
+				return self::$fields[$this->table]['fields'][$field]['Type'];
+			return 'string';
+		}
 
 // GetValueFromDB will re-fetch a single value from the DB - useful for flags, locks, etc
- 	public function GetValueFromDB($field)
- 	{
- 		$retval = $this-&gt;GetValuesFromDB(array($field));
- 		return $retval[$field];
- 	}
+		public function GetValueFromDB($field)
+		{
+			$retval = $this->GetValuesFromDB(array($field));
+			return $retval[$field];
+		}
 
 // GetValuesFromDB will get a given set of fields from this row in the table
- 	// Note that it does not update the internal data
- 	public function GetValuesFromDB($fieldlist = array())
- 	{
- 		$retval = false;
- 		if (!$this-&gt;isnew and count($fieldlist) &gt; 0)
- 		{
- 			$sql = 'select '.implode(',', $fieldlist).' from '.$this-&gt;table.' where '.$this-&gt;PrimaryKeyWhere();
- 			$query = mysql_query($sql);
- 			if ($query !== false and mysql_num_rows($query) == 1)
- 			{
- 				$row = mysql_fetch_assoc($query);
- 				$retval = array();
- 				foreach ($row as $key =&gt; $val)
- 					$retval[$key] = $val;
- 			}
- 		}
- 		return $retval;
- 	}
+		// Note that it does not update the internal data
+		public function GetValuesFromDB($fieldlist = array())
+		{
+			$retval = false;
+			if (!$this->isnew and count($fieldlist) > 0)
+			{
+				$sql = 'select '.implode(',', $fieldlist).' from '.$this->table.' where '.$this->PrimaryKeyWhere();
+				$query = mysql_query($sql);
+				if ($query !== false and mysql_num_rows($query) == 1)
+				{
+					$row = mysql_fetch_assoc($query);
+					$retval = array();
+					foreach ($row as $key => $val)
+						$retval[$key] = $val;
+				}
+			}
+			return $retval;
+		}
 
 // GetFieldList will produce an array containing the table definition
- 	public function GetFieldList($pkey = true, $normal = true)
- 	{
- 		$retval = array();
- 		if ($pkey) $retval['primarykey'] = self::$fields[$this-&gt;table]['primarykey'];
- 		if ($normal) $retval['normal'] = self::$fields[$this-&gt;table]['fields'];
- 		return $retval;
- 	}
+		public function GetFieldList($pkey = true, $normal = true)
+		{
+			$retval = array();
+			if ($pkey) $retval['primarykey'] = self::$fields[$this->table]['primarykey'];
+			if ($normal) $retval['normal'] = self::$fields[$this->table]['fields'];
+			return $retval;
+		}
 
 // Reload will update this object from the table
- 	// Reloading a new row (duh!!) or reloading a dirty object will raise errors
- 	public function Reload($ignoredirty = false)
- 	{
- 		if ($this-&gt;isnew)
- 		{
- 			trigger_error(get_class($this).'.Reload: Attempted to reload a new object');
- 		}
- 		else
- 		{
- 			if (!$ignoredirty and !$this-&gt;disregarddirty and $this-&gt;dirty)
- 				trigger_error(get_class($this).'.Reload: Reloading a dirty object - changes lost');
- 			// Reload from DB
- 			$this-&gt;FindFirst($this-&gt;PrimaryKeyWhere());
- 		}
- 	}
+		// Reloading a new row (duh!!) or reloading a dirty object will raise errors
+		public function Reload($ignoredirty = false)
+		{
+			if ($this->isnew)
+			{
+				trigger_error(get_class($this).'.Reload: Attempted to reload a new object');
+			}
+			else
+			{
+				if (!$ignoredirty and !$this->disregarddirty and $this->dirty)
+					trigger_error(get_class($this).'.Reload: Reloading a dirty object - changes lost');
+				// Reload from DB
+				$this->FindFirst($this->PrimaryKeyWhere());
+			}
+		}
 
 // CreateInsertSQL is a helper function used to build insert statements
- 	private function CreateInsertSQL($setfields)
- 	{
- 		return 'insert into '.$this-&gt;table.' set '.implode(', ', $setfields);
- 	}
+		private function CreateInsertSQL($setfields)
+		{
+			return 'insert into '.$this->table.' set '.implode(', ', $setfields);
+		}
 
 // Save this row
- 	public function Save()
- 	{
- 		$retval = false;
+		public function Save()
+		{
+			$retval = false;
 
 // Can't save a read only row
- 		if ($this-&gt;readonly)
- 		{
- 			trigger_error(get_class($this).'.Save: Attempt to save a readonly object');
- 		}
- 		// Are we dirty?
- 		elseif ($this-&gt;dirty)
- 		{
- 			// Call table-specific translation
- 			$this-&gt;BeforeSave();
+			if ($this->readonly)
+			{
+				trigger_error(get_class($this).'.Save: Attempt to save a readonly object');
+			}
+			// Are we dirty?
+			elseif ($this->dirty)
+			{
+				// Call table-specific translation
+				$this->BeforeSave();
 
 // Get the fields
- 			$setfields = array();
- 			foreach (array_keys(self::$fields[$this-&gt;table]['fields']) as $field)
- 			{
- 				if (isset($this-&gt;data[$field]))
- 					$setfields[$field] = $field.' = '.self::Escape($this-&gt;data[$field]);
- 			}
+				$setfields = array();
+				foreach (array_keys(self::$fields[$this->table]['fields']) as $field)
+				{
+					if (isset($this->data[$field]))
+						$setfields[$field] = $field.' = '.self::Escape($this->data[$field]);
+				}
 
 // Is this a new row?
- 			if ($this-&gt;isnew)
- 			{
- 				// Insert a new row
- 				$sql = $this-&gt;CreateInsertSQL($setfields);
- 			}
- 			else
- 			{
- 				// Update existing row
- 				$sql = 'update '.$this-&gt;table.' set '.implode(', ', $setfields).' where '.$this-&gt;PrimaryKeyWhere();
- 			}
+				if ($this->isnew)
+				{
+					// Insert a new row
+					$sql = $this->CreateInsertSQL($setfields);
+				}
+				else
+				{
+					// Update existing row
+					$sql = 'update '.$this->table.' set '.implode(', ', $setfields).' where '.$this->PrimaryKeyWhere();
+				}
 
 $result = mysql_query($sql);
- 			if ($result === false)
- 			{
- 				// Something bad happened!
- 				trigger_error(get_class($this).'.Save: Failed to save object - '.mysql_error());
- 				$retval = false;
- 			}
- 			else
- 			{
- 				// Saved successfully, we're now clean
- 				$this-&gt;dirty = false;
- 				$retval = true;
+				if ($result === false)
+				{
+					// Something bad happened!
+					trigger_error(get_class($this).'.Save: Failed to save object - '.mysql_error());
+					$retval = false;
+				}
+				else
+				{
+					// Saved successfully, we're now clean
+					$this->dirty = false;
+					$retval = true;
 
 // If this was a new row we need to grab the auto_number'd id
- 				if ($this-&gt;isnew)
- 				{
- 					$this-&gt;data[$this-&gt;idfield] = mysql_insert_id();
- 					// We're no longer a new row
- 					$this-&gt;isnew = false;
- 				}
- 			}
+					if ($this->isnew)
+					{
+						$this->data[$this->idfield] = mysql_insert_id();
+						// We're no longer a new row
+						$this->isnew = false;
+					}
+				}
 
 // Call table-specific stuff
- 			$this-&gt;AfterLoad();
- 		}
- 		else
- 		{
- 			// Not dirty, call it a success!
- 			$retval = true;
- 		}
+				$this->AfterLoad();
+			}
+			else
+			{
+				// Not dirty, call it a success!
+				$retval = true;
+			}
 
 return $retval;
- 	}
+		}
 
 // Delete will delete this row from the table
- 	public function Delete()
- 	{
- 		$retval = false;
- 		// Can't delete a new row, it doesn't actually exist yet!
- 		if ($this-&gt;isnew)
- 		{
- 			trigger_error(get_class($this).'.Delete: Attempted to delete a new object');
- 		}
- 		else
- 		{
- 			// Call table-specific stuff
- 			$this-&gt;BeforeDelete();
- 			// Do the delete
- 			$sql = 'delete from '.$this-&gt;table.' where '.$this-&gt;PrimaryKeyWhere();
- 			$retval = mysql_query($sql);
- 			// Call table-specific stuff
- 			$this-&gt;AfterDelete($retval);
- 		}
- 		return $retval;
- 	}
+		public function Delete()
+		{
+			$retval = false;
+			// Can't delete a new row, it doesn't actually exist yet!
+			if ($this->isnew)
+			{
+				trigger_error(get_class($this).'.Delete: Attempted to delete a new object');
+			}
+			else
+			{
+				// Call table-specific stuff
+				$this->BeforeDelete();
+				// Do the delete
+				$sql = 'delete from '.$this->table.' where '.$this->PrimaryKeyWhere();
+				$retval = mysql_query($sql);
+				// Call table-specific stuff
+				$this->AfterDelete($retval);
+			}
+			return $retval;
+		}
 
 // PrimaryKeyWhere builds a where clause from the fields in the primary key
- 	// This effectively produces a where clause that will retrieve the row this object is representing
- 	public function PrimaryKeyWhere()
- 	{
- 		$wherefields = array();
- 		foreach (self::$fields[$this-&gt;table]['primarykey'] as $field)
- 			$wherefields[] = $field.' = '.self::Escape($this-&gt;data[$field]);
- 		return '('.implode(' and ', $wherefields).')';
- 	}
+		// This effectively produces a where clause that will retrieve the row this object is representing
+		public function PrimaryKeyWhere()
+		{
+			$wherefields = array();
+			foreach (self::$fields[$this->table]['primarykey'] as $field)
+				$wherefields[] = $field.' = '.self::Escape($this->data[$field]);
+			return '('.implode(' and ', $wherefields).')';
+		}
 
 // FindAll takes a set of conditions in the form of a where clause, a limit clause and an order specification,
- 	// builds a query from them and executes it. The rows returned are used to create an array of objects which is
- 	// then returned
- 	// Note that this method can only be called on subclasses - it cannot be called directly on the Table class
- 	public function FindAll($conditions = '', $limit = '', $order = '')
- 	{
- 		$sql = 'select * from '.$this-&gt;table;
- 		if (strlen($conditions) &gt; 0)
- 			$sql .= ' where '.$conditions;
+		// builds a query from them and executes it. The rows returned are used to create an array of objects which is
+		// then returned
+		// Note that this method can only be called on subclasses - it cannot be called directly on the Table class
+		public function FindAll($conditions = '', $limit = '', $order = '')
+		{
+			$sql = 'select * from '.$this->table;
+			if (strlen($conditions) > 0)
+				$sql .= ' where '.$conditions;
 
-if (strlen($order) &gt; 0)
- 			$sql .= ' order by '.$order;
+if (strlen($order) > 0)
+				$sql .= ' order by '.$order;
 
-if (strlen($limit) &gt; 0)
- 			$sql .= ' limit '.$limit;
+if (strlen($limit) > 0)
+				$sql .= ' limit '.$limit;
 
 $query = mysql_query($sql);
 
 // Errors will currently cause an error to be raised. This may not be ideal for your application, you may need
- 		// to change how these are handled
- 		if (!$query)
- 			trigger_error('MySQL error in '.get_class($this).'::FindAll: '.mysql_error());
+			// to change how these are handled
+			if (!$query)
+				trigger_error('MySQL error in '.get_class($this).'::FindAll: '.mysql_error());
 
 // If the query got no rows return an empty array
- 		if (mysql_num_rows($query) == 0)
- 			return array();
+			if (mysql_num_rows($query) == 0)
+				return array();
 
 $classname = get_class($this);
- 		$retval = array();
- 		while ($row = mysql_fetch_assoc($query))
- 		{
- 			$obj = new $classname();
- 			$obj-&gt;LoadFromArray($row);
- 			$retval[] = $obj;
- 		}
- 		return $retval;
- 	}
+			$retval = array();
+			while ($row = mysql_fetch_assoc($query))
+			{
+				$obj = new $classname();
+				$obj->LoadFromArray($row);
+				$retval[] = $obj;
+			}
+			return $retval;
+		}
 
 // FindFirst does the same as FindAll but only gets a single row and returns a single object
- 	public function FindFirst($conditions = '', $order = '')
- 	{
- 		$sql = 'select * from '.$this-&gt;table;
- 		if (strlen($conditions) &gt; 0)
- 			$sql .= ' where '.$conditions;
+		public function FindFirst($conditions = '', $order = '')
+		{
+			$sql = 'select * from '.$this->table;
+			if (strlen($conditions) > 0)
+				$sql .= ' where '.$conditions;
 
-if (strlen($order) &gt; 0)
- 			$sql .= ' order by '.$order;
+if (strlen($order) > 0)
+				$sql .= ' order by '.$order;
 
 $sql .= ' limit 1';
 
 $query = mysql_query($sql);
 
 // Errors will currently cause an error to be raised. This may not be ideal for your application, you may need
- 		// to change how these are handled
- 		if (!$query)
- 			trigger_error('MySQL error in '.get_class($this).'::FindFirst: '.mysql_error());
+			// to change how these are handled
+			if (!$query)
+				trigger_error('MySQL error in '.get_class($this).'::FindFirst: '.mysql_error());
 
 // If the query got no rows return false rather than a new empty object
- 		if (mysql_num_rows($query) == 0)
- 			return false;
+			if (mysql_num_rows($query) == 0)
+				return false;
 
 $row = mysql_fetch_assoc($query);
- 		$this-&gt;LoadFromArray($row);
+			$this->LoadFromArray($row);
 
 return $this;
- 	}
+		}
 
 // Paged is similar to FindAll but it will get a certain range of rows given a page number and the number of rows
- 	// on each page. Returns an array where [0] is an array of rows, [1] is the current page number (in case it was
- 	// adjusted) and [2] is the total number of pages available
- 	public function Paged($page = 1, $perpage = 10, $conditions = '', $order = '')
- 	{
- 		// Get the total count
- 		$sql = 'select count(1) from '.$this-&gt;table;
- 		if (strlen($conditions) &gt; 0)
- 			$sql .= ' where '.$conditions;
- 		$query = mysql_query($sql);
+		// on each page. Returns an array where [0] is an array of rows, [1] is the current page number (in case it was
+		// adjusted) and [2] is the total number of pages available
+		public function Paged($page = 1, $perpage = 10, $conditions = '', $order = '')
+		{
+			// Get the total count
+			$sql = 'select count(1) from '.$this->table;
+			if (strlen($conditions) > 0)
+				$sql .= ' where '.$conditions;
+			$query = mysql_query($sql);
 
 // Query failed, raise an error
- 		if (!$query)
- 			trigger_error('MySQL error in '.get_class($this).'::Paged: '.mysql_error());
+			if (!$query)
+				trigger_error('MySQL error in '.get_class($this).'::Paged: '.mysql_error());
 
 // Because it's a count query this should never happen, but handle nicely just in case
- 		if (mysql_num_rows($query) == 0)
- 			return array(array(), 1, 1);
+			if (mysql_num_rows($query) == 0)
+				return array(array(), 1, 1);
 
 $row = mysql_fetch_array($query);
- 		$rowcount = $row[0];
- 		// Return if there are no matching rows
- 		if ($rowcount == 0)
- 			return array(array(), 1, 1);
+			$rowcount = $row[0];
+			// Return if there are no matching rows
+			if ($rowcount == 0)
+				return array(array(), 1, 1);
 
 // Make sure the requested page number is in range
- 		$totalpages = ceil($rowcount / $perpage);
- 		if ($page &gt; $totalpages) $page = $totalpages;
- 		if ($page &lt; 1) $page = 1;
+			$totalpages = ceil($rowcount / $perpage);
+			if ($page > $totalpages) $page = $totalpages;
+			if ($page < 1) $page = 1;
 
 // Build the query
- 		$sql = 'select * from '.$this-&gt;table;
- 		if (strlen($conditions) &gt; 0)
- 			$sql .= ' where '.$conditions;
+			$sql = 'select * from '.$this->table;
+			if (strlen($conditions) > 0)
+				$sql .= ' where '.$conditions;
 
-if (strlen($order) &gt; 0)
- 			$sql .= ' order by '.$order;
+if (strlen($order) > 0)
+				$sql .= ' order by '.$order;
 
 $sql .= ' limit '.(($page-1) * $perpage).','.$perpage;
 
 $query = mysql_query($sql);
 
 // Query failed, raise an error
- 		if (!$query)
- 			trigger_error('MySQL error in '.get_class($this).'::Paged: '.mysql_error());
+			if (!$query)
+				trigger_error('MySQL error in '.get_class($this).'::Paged: '.mysql_error());
 
 // No rows returned, this shouldn't be possible but handle nicely just in case
- 		if (mysql_num_rows($query) == 0)
- 			return array(array(), 1, 1);
+			if (mysql_num_rows($query) == 0)
+				return array(array(), 1, 1);
 
 // Create the object array
- 		$classname = get_class($this);
- 		$retval = array();
- 		while ($row = mysql_fetch_assoc($query))
- 		{
- 			$obj = new $classname();
- 			$obj-&gt;LoadFromArray($row);
- 			$retval[] = $obj;
- 		}
+			$classname = get_class($this);
+			$retval = array();
+			while ($row = mysql_fetch_assoc($query))
+			{
+				$obj = new $classname();
+				$obj->LoadFromArray($row);
+				$retval[] = $obj;
+			}
 
 // Return the rows, the page number and the number of pages
- 		return array($retval, $page, $totalpages);
- 	}
+			return array($retval, $page, $totalpages);
+		}
 
 // Count returns the number of rows that match a condition
- 	public function Count($conditions)
- 	{
- 		$sql = 'select count(*) as count from '.$this-&gt;table;
- 		if (strlen($conditions) &gt; 0)
- 			$sql .= ' where '.$conditions;
+		public function Count($conditions)
+		{
+			$sql = 'select count(*) as count from '.$this->table;
+			if (strlen($conditions) > 0)
+				$sql .= ' where '.$conditions;
 
 $query = mysql_query($sql);
- 		if (!$query or mysql_num_rows($query) == 0)
- 			return false;
+			if (!$query or mysql_num_rows($query) == 0)
+				return false;
 
 $row = mysql_fetch_assoc($query);
- 		return $row['count'];
- 	}
+			return $row['count'];
+		}
 
 // Is this row new?
- 	public function IsNew()
- 	{
- 		return $this-&gt;isnew;
- 	}
+		public function IsNew()
+		{
+			return $this->isnew;
+		}
 
 //////////////////////////////
- 	// Static utility functions //
- 	//////////////////////////////
+		// Static utility functions //
+		//////////////////////////////
 
 // Escape should be used to escape all values used in conditions
- 	static public function Escape($var)
- 	{
- 		return '"'.mysql_real_escape_string($var).'"';
- 	}
+		static public function Escape($var)
+		{
+			return '"'.mysql_real_escape_string($var).'"';
+		}
 
 // MakeLike returns a like query for a given var and val
- 	static public function MakeLike($var, $val)
- 	{
- 		return '(`'.$var.'` like "%'.mysql_real_escape_string($val).'%")';
- 	}
+		static public function MakeLike($var, $val)
+		{
+			return '(`'.$var.'` like "%'.mysql_real_escape_string($val).'%")';
+		}
 
 // MakeLikes takes an array of vars and a single val and returns a set of likes combined by op
- 	static public function MakeLikes($vars, $val, $op = 'or')
- 	{
- 		$likes = array();
- 		foreach ($vars as $var)
- 			$likes[] = self::MakeLike($var, $val);
- 		return '('.implode(' '.$op.' ', $likes).')';
- 	}
+		static public function MakeLikes($vars, $val, $op = 'or')
+		{
+			$likes = array();
+			foreach ($vars as $var)
+				$likes[] = self::MakeLike($var, $val);
+			return '('.implode(' '.$op.' ', $likes).')';
+		}
 
 // Lock and Unlock wrap the table locking system
- 	static protected function Lock($tables = false)
- 	{
- 		if ($tables === false)
- 			trigger_error("Table::Lock called without a table to lock");
+		static protected function Lock($tables = false)
+		{
+			if ($tables === false)
+				trigger_error("Table::Lock called without a table to lock");
 
 if (!is_array($tables))
- 			$tables = array($tables);
- 		return mysql_query('lock tables `'.implode('`,`', $tables).'`');
- 	}
- 	static protected function Unlock()
- 	{
- 		return mysql_query('unlock tables');
- 	}
+				$tables = array($tables);
+			return mysql_query('lock tables `'.implode('`,`', $tables).'`');
+		}
+		static protected function Unlock()
+		{
+			return mysql_query('unlock tables');
+		}
 
 // GetSingleValue will return the first value of the first row returned by the provided SQL
- 	// Caller should make sure it's only getting one field and one row
- 	static public function &amp; GetSingleValue($sql)
- 	{
- 		$query = mysql_query($sql);
- 		if ($query === false)
- 		{
- 			trigger_error('Query failed: '.mysql_error(), E_USER_ERROR);
- 			exit;
- 		}
- 		if (mysql_num_rows($query) == 0)
- 			return false;
- 		$retval = mysql_fetch_array($query);
- 		mysql_free_result($query);
- 		return $retval[0];
- 	}
+		// Caller should make sure it's only getting one field and one row
+		static public function &amp; GetSingleValue($sql)
+		{
+			$query = mysql_query($sql);
+			if ($query === false)
+			{
+				trigger_error('Query failed: '.mysql_error(), E_USER_ERROR);
+				exit;
+			}
+			if (mysql_num_rows($query) == 0)
+				return false;
+			$retval = mysql_fetch_array($query);
+			mysql_free_result($query);
+			return $retval[0];
+		}
 
 // GetSingle will return an associative array containing the first row returned by the provided SQL
- 	// Caller should make sure it's only getting one row
- 	static public function &amp; GetSingle($sql)
- 	{
- 		$query = mysql_query($sql);
- 		if ($query === false)
- 		{
- 			trigger_error('Query failed: '.mysql_error(), E_USER_ERROR);
- 			exit;
- 		}
- 		if (mysql_num_rows($query) == 0)
- 			return array();
- 		$retval = mysql_fetch_assoc($query);
- 		mysql_free_result($query);
- 		return $retval;
- 	}
+		// Caller should make sure it's only getting one row
+		static public function &amp; GetSingle($sql)
+		{
+			$query = mysql_query($sql);
+			if ($query === false)
+			{
+				trigger_error('Query failed: '.mysql_error(), E_USER_ERROR);
+				exit;
+			}
+			if (mysql_num_rows($query) == 0)
+				return array();
+			$retval = mysql_fetch_assoc($query);
+			mysql_free_result($query);
+			return $retval;
+		}
 
 // GetMultiple will return an array of associative arrays containing every row returned by the provided SQL
- 	// Be careful not to get too many rows with this method - it loads them all into memory!!
- 	static public function &amp; GetMultiple($sql)
- 	{
- 		$query = mysql_query($sql);
- 		if ($query === false)
- 		{
- 			trigger_error('Query failed: '.mysql_error(), E_USER_ERROR);
- 			exit;
- 		}
- 		$retval = array();
- 		if (mysql_num_rows($query) &gt; 0)
- 		{
- 			while ($row = mysql_fetch_assoc($query))
- 			$retval[] = $row;
- 		}
- 		mysql_free_result($query);
- 		return $retval;
- 	}
+		// Be careful not to get too many rows with this method - it loads them all into memory!!
+		static public function &amp; GetMultiple($sql)
+		{
+			$query = mysql_query($sql);
+			if ($query === false)
+			{
+				trigger_error('Query failed: '.mysql_error(), E_USER_ERROR);
+				exit;
+			}
+			$retval = array();
+			if (mysql_num_rows($query) > 0)
+			{
+				while ($row = mysql_fetch_assoc($query))
+				$retval[] = $row;
+			}
+			mysql_free_result($query);
+			return $retval;
+		}
 
 // GetSingleColumn will return an array containing the first field of each row returned by the provided SQL
- 	// Be careful not to get too many rows with this method - it loads them all into memory
- 	static public function &amp; GetSingleColumn($sql)
- 	{
- 		$query = mysql_query($sql);
- 		if ($query === false)
- 		{
- 			trigger_error('Query failed: '.mysql_error(), E_USER_ERROR);
- 			exit;
- 		}
- 		$retval = array();
- 		if (mysql_num_rows($query) &gt; 0)
- 		{
- 			while ($row = mysql_fetch_array($query))
- 			$retval[] = $row[0];
- 		}
- 		mysql_free_result($query);
- 		return $retval;
- 	}
+		// Be careful not to get too many rows with this method - it loads them all into memory
+		static public function &amp; GetSingleColumn($sql)
+		{
+			$query = mysql_query($sql);
+			if ($query === false)
+			{
+				trigger_error('Query failed: '.mysql_error(), E_USER_ERROR);
+				exit;
+			}
+			$retval = array();
+			if (mysql_num_rows($query) > 0)
+			{
+				while ($row = mysql_fetch_array($query))
+				$retval[] = $row[0];
+			}
+			mysql_free_result($query);
+			return $retval;
+		}
 
 // Modify is intended to execute a SQL statement that will make a change (insert, update, alter, etc)
- 	static public function Modify($sql)
- 	{
- 		$query = mysql_query($sql);
- 		if ($query === false)
- 			return false;
- 		return true;
- 	}
+		static public function Modify($sql)
+		{
+			$query = mysql_query($sql);
+			if ($query === false)
+				return false;
+			return true;
+		}
 
 // ModifyWithAutonumber is the same as Modify but returns the autonumber ID
- 	static public function ModifyWithAutonumber($sql)
- 	{
- 		$query = mysql_query($sql);
- 		if ($query === false)
- 			return false;
- 		return mysql_insert_id();
- 	}
- }</pre>
+		static public function ModifyWithAutonumber($sql)
+		{
+			$query = mysql_query($sql);
+			if ($query === false)
+				return false;
+			return mysql_insert_id();
+		}
+	}
+{% endhighlight %}
 
 And that concludes the <em>Table</em> class, I hope you enjoyed the ride. Seriously though, it's not too complicated and it really does make working with small numbers of rows a lot easier.
 
@@ -690,254 +697,260 @@ Something I have tried to avoid is abstracting the database too much. This class
 I was trying to explain, via a lengthy detour, why you won't find Open, Next and Close methods in this class. It's not what I was trying to do. If I have a situation where those methods would be needed I'd prefer to use mysql_(p)connect, mysql_fetch_assoc and mysql_close rather than waste time trying to replace something perfectly adequate for the rare times I'd need them.
 
 Right, mini-rant over. On to the account class.
-<pre class="brush: php">&lt;?php
- // Model: Account 
+
+{% highlight php %}
+<?php
+// Model: Account
 
 // Pull in the table definition
- require_once('table.class.php');
+require_once('table.class.php');
 
 class Account extends Table
- {
- 	// The table we're mapping to is called accounts
- 	protected $table = 'accounts';
- 	// We have a number of fields we want to treat differently
- 	// Note that these definitions don't affect how the data is treated, it just changes what is reported
- 	// by the GetFieldType method in the Table class - this was added to allow automatic generation of
- 	// forms
- 	// An array indicates something akin to an enumeration where the actual value used can be defined
- 	// differently (look at ACM in AccountType)
- 	protected $customfieldtypes = array('Status' =&gt; array('Created', 'Active', 'Expired', 'Deleted'),
- 										'Created' =&gt; 'date',
- 										'Expires' =&gt; 'date',
- 										'AccountType' =&gt; array('Full', 'Demo', 'ACM' =&gt; 'acm'),
- 										);
+	{
+		// The table we're mapping to is called accounts
+		protected $table = 'accounts';
+		// We have a number of fields we want to treat differently
+		// Note that these definitions don't affect how the data is treated, it just changes what is reported
+		// by the GetFieldType method in the Table class - this was added to allow automatic generation of
+		// forms
+		// An array indicates something akin to an enumeration where the actual value used can be defined
+		// differently (look at ACM in AccountType)
+		protected $customfieldtypes = array('Status' => array('Created', 'Active', 'Expired', 'Deleted'),
+											'Created' => 'date',
+											'Expires' => 'date',
+											'AccountType' => array('Full', 'Demo', 'ACM' => 'acm'),
+											);
 
 // AfterLoad is called whenever the Table class completes loading of the data
- 	// It can be used to...
- 	protected function AfterLoad()
- 	{
- 		// ...enforce consistency...
- 		if (isset($this-&gt;data['AccountType']))
- 		{
- 			// If ACM, the accounttype should be lowercase
- 			if (strtolower($this-&gt;data['AccountType']) == 'acm')
- 				$this-&gt;data['AccountType'] = 'acm';
- 		}
+		// It can be used to...
+		protected function AfterLoad()
+		{
+			// ...enforce consistency...
+			if (isset($this->data['AccountType']))
+			{
+				// If ACM, the accounttype should be lowercase
+				if (strtolower($this->data['AccountType']) == 'acm')
+					$this->data['AccountType'] = 'acm';
+			}
 
 // ...present data to consumers in a different format to that which is stored in the table...
- 		if (isset($this-&gt;data['Created']) and $this-&gt;data['Created'] &gt; 0)
- 			$this-&gt;data['Created'] = date('Y-m-d', $this-&gt;data['Created']);
+			if (isset($this->data['Created']) and $this->data['Created'] > 0)
+				$this->data['Created'] = date('Y-m-d', $this->data['Created']);
 
-if (isset($this-&gt;data['Expires']) and $this-&gt;data['Expires'] &gt; 0)
- 			$this-&gt;data['Expires'] = date('Y-m-d', $this-&gt;data['Expires']);
+if (isset($this->data['Expires']) and $this->data['Expires'] > 0)
+				$this->data['Expires'] = date('Y-m-d', $this->data['Expires']);
 
 // ...including complex types...
- 		if (isset($this-&gt;data['OtherInfo']))
- 			$this-&gt;data['OtherInfo'] = unserialize($this-&gt;data['OtherInfo']);
+			if (isset($this->data['OtherInfo']))
+				$this->data['OtherInfo'] = unserialize($this->data['OtherInfo']);
 
 // ...and it can be used to create pseudo fields that do not exist in the table but may exist in other tables
- 		$this-&gt;data['projects'] = array();
- 	}
+			$this->data['projects'] = array();
+		}
 
 // BeforeSave is called by the Table class right before it saves the data back to the table
- 	// It has the reverse purpose of AfterLoad, so you can...
- 	protected function BeforeSave()
- 	{
- 		// ...store complex types...
- 		if (isset($this-&gt;data['OtherInfo']) and is_array($this-&gt;data['OtherInfo']))
- 			$this-&gt;data['OtherInfo'] = serialize($this-&gt;data['OtherInfo']);
+		// It has the reverse purpose of AfterLoad, so you can...
+		protected function BeforeSave()
+		{
+			// ...store complex types...
+			if (isset($this->data['OtherInfo']) and is_array($this->data['OtherInfo']))
+				$this->data['OtherInfo'] = serialize($this->data['OtherInfo']);
 
 // ...convert data to a format suitable for storage in a table...
- 		if (isset($this-&gt;data['Expires']) and strlen($this-&gt;data['Expires']) &gt; 0 and $this-&gt;data['Expires'] != 0)
- 			$this-&gt;data['Expires'] = strtotime($this-&gt;data['Expires']);
+			if (isset($this->data['Expires']) and strlen($this->data['Expires']) > 0 and $this->data['Expires'] != 0)
+				$this->data['Expires'] = strtotime($this->data['Expires']);
 
 // ...and forcing default values in new rows
- 		if ($this-&gt;isnew)
- 		{
- 			$this-&gt;data['Created'] = time();
- 			if (!isset($this-&gt;data['Status'])) $this-&gt;data['Status'] = 'Created';
- 		}
- 		else
- 		{
- 			if (isset($this-&gt;data['Created']) and strlen($this-&gt;data['Created']) &gt; 0 and $this-&gt;data['Created'] != 0)
- 				$this-&gt;data['Created'] = strtotime($this-&gt;data['Created']);
- 		}
+			if ($this->isnew)
+			{
+				$this->data['Created'] = time();
+				if (!isset($this->data['Status'])) $this->data['Status'] = 'Created';
+			}
+			else
+			{
+				if (isset($this->data['Created']) and strlen($this->data['Created']) > 0 and $this->data['Created'] != 0)
+					$this->data['Created'] = strtotime($this->data['Created']);
+			}
 
 // Note the absense of any reference to the projects variable
- 		// This is fine since the Save method of the Table class uses its own internal list of fields to decide which parts of
- 		// the data to save to the table
- 	}
+			// This is fine since the Save method of the Table class uses its own internal list of fields to decide which parts of
+			// the data to save to the table
+		}
 
 // In addition to overriding methods in the Table class, we can create methods that are specific to this particular table
- 	// For example, this method will return true only if the AccountType is set to acm (Account Manager)
- 	public function IsACM()
- 	{
- 		return (isset($this-&gt;data['AccountType']) and $this-&gt;data['AccountType'] == 'acm');
- 	}
+		// For example, this method will return true only if the AccountType is set to acm (Account Manager)
+		public function IsACM()
+		{
+			return (isset($this->data['AccountType']) and $this->data['AccountType'] == 'acm');
+		}
 
 // Methods can also return related rows
- 	// For example, GetACM will return an Account object representing this objects Account Manager
- 	public function &amp; GetACM()
- 	{
- 		$retval = false;
- 		if ($this-&gt;data['ACM'] &gt; 0)
- 		{
- 			$retval = new Account('id = '.$this-&gt;data['ACM']);
- 		}
- 		return $retval;
- 	}
+		// For example, GetACM will return an Account object representing this objects Account Manager
+		public function &amp; GetACM()
+		{
+			$retval = false;
+			if ($this->data['ACM'] > 0)
+			{
+				$retval = new Account('id = '.$this->data['ACM']);
+			}
+			return $retval;
+		}
 
 // In true OO tradition, any method in this class should be related to an Account
- 	// For example, IsExpired will return true if the account has expired...
- 	public function IsExpired()
- 	{
- 		return (isset($this-&gt;data['Expires']) and $this-&gt;data['Expires'] != 0 and strtotime($this-&gt;data['Expires']) &lt; time());
- 	}
+		// For example, IsExpired will return true if the account has expired...
+		public function IsExpired()
+		{
+			return (isset($this->data['Expires']) and $this->data['Expires'] != 0 and strtotime($this->data['Expires']) < time());
+		}
 
 // ...MarkDeleted will set the status of the Account and save it back to the database...
- 	public function MarkDeleted()
- 	{
- 		$this-&gt;Status = 'Deleted';
- 		// Note that calling Save will cause BeforeSave to be called, the data will then be saved and finally AfterLoad will be called
- 		// This means that the member variable named data will be reset, along with any custom fields put in by AfterLoad
- 		return $this-&gt;Save();
- 	}
+		public function MarkDeleted()
+		{
+			$this->Status = 'Deleted';
+			// Note that calling Save will cause BeforeSave to be called, the data will then be saved and finally AfterLoad will be called
+			// This means that the member variable named data will be reset, along with any custom fields put in by AfterLoad
+			return $this->Save();
+		}
 
 // ...performing actions like resetting the account password...
- 	public function ResetPassword($password = '')
- 	{
- 		// If no password was given, generate a random one
- 		$pwd = $password;
- 		if (strlen($pwd) == 0)
- 			$pwd = generatePassword(); // Function source omitted since it's irrelevant
+		public function ResetPassword($password = '')
+		{
+			// If no password was given, generate a random one
+			$pwd = $password;
+			if (strlen($pwd) == 0)
+				$pwd = generatePassword(); // Function source omitted since it's irrelevant
 
 // Save it
- 		$this-&gt;Password = $pwd;
- 		if (!$this-&gt;Save())
- 			return false;
+			$this->Password = $pwd;
+			if (!$this->Save())
+				return false;
 
 if ($password == '')
- 		{
- 			// Password was random, email it to the address held in the account
- 			if (strlen($this-&gt;data['EmailAddress']) &gt; 0)
- 				mail($this-&gt;data['EmailAddress'], 'Password Updated', 'Your new password is: '.$pwd, "From: Support &lt;support@example.com&gt;", '-fsupport@example.com');
- 		}
+			{
+				// Password was random, email it to the address held in the account
+				if (strlen($this->data['EmailAddress']) > 0)
+					mail($this->data['EmailAddress'], 'Password Updated', 'Your new password is: '.$pwd, "From: Support <support@example.com>", '-fsupport@example.com');
+			}
 
 return true;
- 	}
+		}
 
 // ...getting or counting other records...
- 	public function ACM_GetAccounts($countonly = false)
- 	{
- 		if ($countonly)
- 		{
- 			return $this-&gt;Count('ACM = '.self::Escape($this-&gt;data['id']));
- 		}
- 		else
- 		{
- 			return $this-&gt;FindAll('ACM = '.self::Escape($this-&gt;data['id']), '', 'name asc');
- 		}
- 	}
+		public function ACM_GetAccounts($countonly = false)
+		{
+			if ($countonly)
+			{
+				return $this->Count('ACM = '.self::Escape($this->data['id']));
+			}
+			else
+			{
+				return $this->FindAll('ACM = '.self::Escape($this->data['id']), '', 'name asc');
+			}
+		}
 
 // ...ensuring that deletions get propogated to dependent data...
- 	public function Destroy()
- 	{
- 		$accounts = $this-&gt;ACM_GetAccounts();
- 		foreach ($accounts as $account)
- 		{
- 			$result = $account-&gt;Destroy();
- 			if ($result !== true)
- 				return $result;
- 		}
+		public function Destroy()
+		{
+			$accounts = $this->ACM_GetAccounts();
+			foreach ($accounts as $account)
+			{
+				$result = $account->Destroy();
+				if ($result !== true)
+					return $result;
+			}
 
 // Call destroy on all projects first - Project is another class derived from Table
- 		$tmp = new Project();
- 		$projects = $tmp-&gt;FindAll('accountid = '.self::Escape($this-&gt;data['id']));
- 		foreach ($projects as $project)
- 		{
- 			$result = $project-&gt;Destroy();
- 			if ($result !== true)
- 				return $result;
- 		}
- 		// Then delete this account
- 		$result = $this-&gt;Delete();
- 		if ($result !== true)
- 			return 'Failed to delete account '.$this-&gt;data['id'];
- 		return true;
- 	}
+			$tmp = new Project();
+			$projects = $tmp->FindAll('accountid = '.self::Escape($this->data['id']));
+			foreach ($projects as $project)
+			{
+				$result = $project->Destroy();
+				if ($result !== true)
+					return $result;
+			}
+			// Then delete this account
+			$result = $this->Delete();
+			if ($result !== true)
+				return 'Failed to delete account '.$this->data['id'];
+			return true;
+		}
 
 // ...other functions omitted for clarity
 
 // You can also define static methods
- 	// Account::Current() will get you an account object from the session (see the next method, Login)
- 	static public function &amp; Current()
- 	{
- 		$retval = false;
- 		if (isset($_SESSION['account']))
- 			$retval = $_SESSION['account'];
- 		return $retval;
- 	}
+		// Account::Current() will get you an account object from the session (see the next method, Login)
+		static public function &amp; Current()
+		{
+			$retval = false;
+			if (isset($_SESSION['account']))
+				$retval = $_SESSION['account'];
+			return $retval;
+		}
 
 // The Login method takes an email address and a password and tries to log the user in
- 	// If login is successful it stores the Account object in the session so it can be retrieved by the Current method
- 	static public function Login($email, $password)
- 	{
- 		$account = new Account();
- 		if ($account-&gt;FindFirst('EmailAddress = '.Table::Escape($email).' and Password = '.Table::Escape($password)) !== false)
- 		{
- 			$_SESSION['account'] = &amp;$account;
- 			return true;
- 		}
- 		return false;
- 	}
+		// If login is successful it stores the Account object in the session so it can be retrieved by the Current method
+		static public function Login($email, $password)
+		{
+			$account = new Account();
+			if ($account->FindFirst('EmailAddress = '.Table::Escape($email).' and Password = '.Table::Escape($password)) !== false)
+			{
+				$_SESSION['account'] = &amp;$account;
+				return true;
+			}
+			return false;
+		}
 
 // Static functions can also be used to return multiple rows
- 	// This one will return an array of objects containing the Account Manager records
- 	static public function &amp; GetACMs()
- 	{
- 		$account = new Account();
- 		return $account-&gt;FindAll('AccountType = '.Table::Escape('acm'), '', 'name asc');
- 	}
+		// This one will return an array of objects containing the Account Manager records
+		static public function &amp; GetACMs()
+		{
+			$account = new Account();
+			return $account->FindAll('AccountType = '.Table::Escape('acm'), '', 'name asc');
+		}
 
 // The rest is exactly the same for every class that derives from Table - absolutely nothing needs changing from class to class,
- 	// but it's vital that these exist - see the next bit of the article for an explanation
+		// but it's vital that these exist - see the next bit of the article for an explanation
 
 // The constructor takes conditions and order and passes them, along with the class name, to the Init method
- 	public function __construct($conditions = '', $order = '') { $this-&gt;Init(__CLASS__, $conditions, $order); }
- 	// The magic __wakeup method is called when an object is read from serialised data (e.g. the session). It also calls the Init
- 	// method but just with the class name
- 	public function __wakeup() { $this-&gt;Init(__CLASS__); }
- }</pre>
+		public function __construct($conditions = '', $order = '') { $this->Init(__CLASS__, $conditions, $order); }
+		// The magic __wakeup method is called when an object is read from serialised data (e.g. the session). It also calls the Init
+		// method but just with the class name
+		public function __wakeup() { $this->Init(__CLASS__); }
+}
+{% endhighlight %}
 
 Ok, so there are a couple of oddities in there that need further explanation, and they both stem from the same problem. The PHP 5 implementation of objects means that inherited methods have an identity crisis. Say you have class A and class B, which extends A. In class A you have a method defined called WhoAmI which returns the name of the class. One possible implementation would use __CLASS__, another possibility would be the get_class function. You may also go as far as to pass $this into get_class. Let's try an example...
 
-<pre class="brush: php"> class A
- {
- 	public function WhoAmI_1()
- 	{
- 		return __CLASS__;
- 	} 
+{% highlight php %}
+<?php
+	class A
+	{
+		public function WhoAmI_1()
+		{
+			return __CLASS__;
+		}
 
-public function WhoAmI_2()
- 	{
- 		return get_class();
- 	}
+		public function WhoAmI_2()
+		{
+			return get_class();
+		}
 
-public function WhoAmI_3()
- 	{
- 		return get_class(\$this);
- 	}
- }
+		public function WhoAmI_3()
+		{
+			return get_class($this);
+		}
+	}
 
-class B extends A
- {
- }
+	class B extends A
+	{
+	}
 
-print A::WhoAmI_1();
- print B::WhoAmI_1();
+	print A::WhoAmI_1();
+	print B::WhoAmI_1();
 
-print A::WhoAmI_2();
- print B::WhoAmI_2();</pre>
+	print A::WhoAmI_2();
+	print B::WhoAmI_2();
+{% endhighlight %}
 
 Now, any sane and reasonable person with a basic knowledge of OOP would expect this to print "ABAB". Yeah, I wish!! What you actually get is "AAAA". Grrrrrrr!!
 
@@ -945,10 +958,13 @@ Now there are good reasons for why PHP does this, and from what I understand fix
 
 So how do we get around that. Well, you probably noticed the WhoAmI_3 method in the above example that wasn't used. Obviously you can't use that method statically since it uses <strong>$this</strong>, so let's add a few lines to it so we can try it out.
 
-<pre class="brush: php">$a = new A();
-$b = new B();
-print $a-&gt;WhoAmI_3();
-print $b-&gt;WhoAmI_3();</pre>
+{% highlight php %}
+<?php
+	$a = new A();
+	$b = new B();
+	print $a->WhoAmI_3();
+	print $b->WhoAmI_3();
+{% endhighlight %}
 
 Perhaps unsurprisingly this gives us what we need: "AAAAAB". But hang on a second, we had to create an instance of the object to do that. Not good. But unfortunately it's the only way around it that I can find.
 

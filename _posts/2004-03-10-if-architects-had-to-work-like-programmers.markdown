@@ -2,10 +2,11 @@
 layout: "post"
 title: "If architects had to work like programmers..."
 time: 00:00:00
-categories: 
+categories:
 - funny
 ---
 An oldie, but a goodie and particularly relevant to my current employment.
+
 <blockquote>Dear Mr. Architect:
 
 Please design and build me a house. I am not quite sure of what I

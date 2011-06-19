@@ -2,7 +2,7 @@
 layout: "post"
 title: "Centralised Calendar"
 time: 00:00:00
-categories: 
+categories:
 - misc
 ---
 I've recently been thinking that I need some sort of centralised calendar. I don't have a particularly scheduled life, but I'm finding more and more that there are dates I need to keep track of. In the past I've tried several options including PDAs, phones and for a little while I used a file-o-fax. Nothing stuck.
@@ -17,7 +17,8 @@ I already have this for my email using IMAP mailboxes and I use Thunderbird and 
 
 A calendar item is stored in the IMAP account as a message. The title of the entry is stored in the subject header, the start date in the date header, other info in X-Cal-* headers and notes in the body. For example...
 
-<code>Message-Id: &lt;20070806000000.167709E1844@stut.net&gt;
+{% highlight bash %}
+Message-Id: &lt;20070806000000.167709E1844@stut.net&gt;
 Subject: Mum's birthday
 Date: Mon, 06 Aug 2007 00:00:00 +0000 (GMT)
 From: cal@stut.net
@@ -26,7 +27,8 @@ Content-Type: text/plain
 X-Cal-Duration: 1 day
 X-Cal-Recurrance: 1 year
 X-Cal-Status: normal
-X-Cal-Signature: vkljsdhnfvlajksdhfgla8hi8aw4hwiwoafn4fnawh38</code>
+X-Cal-Signature: vkljsdhnfvlajksdhfgla8hi8aw4hwiwoafn4fnawh38
+{% endhighlight %}
 
 Obviously there are lots of possible X-Cal-* headers, but you get the idea. Since it's IMAP you could also implement a Microsoft Exchange-like appointments system where other people can send items to your calendar with options for you to select from. That is one potential use for the X-Cal-Status header. The X-Cal-Signature is intended to contain an authentication value - clients will only trust certain other X-Cal-* headers (e.g. Status) if the signature is correct. This ensures that items coming in from unknown sources are handled appropriately.An alternative to this way of storing the data, the email format could be used to simply store information in the <a href="http://www.ietf.org/rfc/rfc2445.txt">iCalendar</a> format. To aid searching the mailbox it would be prudent to duplicate some information into the headers, specifically the date and title (subject).
 

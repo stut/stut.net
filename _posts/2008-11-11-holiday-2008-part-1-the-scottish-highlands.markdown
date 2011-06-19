@@ -2,9 +2,9 @@
 layout: "post"
 title: "Holiday 2008 part 1: The Scottish Highlands"
 time: 14:27:25
-categories: 
+categories:
 - photography
-tags: 
+tags:
 - hdr
 - jared-earle
 - 23x
@@ -13,7 +13,8 @@ tags:
 
 <div style="float:right;background-color:black;color:white;padding:4px;margin-left:1em;margin-bottom:0.25em;text-align:center;"><a href="http://www.flickr.com/photos/stuartdallas/3004420732/" title="Boat at Bowling by Stuart Dallas, on Flickr" style="border:0;"><img src="http://farm4.static.flickr.com/3170/3004420732_b0170c0e9d_m.jpg" width="240" height="159" alt="Boat at Bowling" border="0" style="margin-bottom:2px;" /></a><br /><span style="font-size:11px;">Red boat, Bowling on the River Clyde, Nov 2008</span></div>
 
-I had a week off and decided to go up to Glasgow to stay with Jared for a few days. After I'd survived the 6 hour drive from Surrey, eaten some fantastic grub (thanks Vic) and slept like a log for a while we headed north into the Highlands.<!--more-->
+I had a week off and decided to go up to Glasgow to stay with Jared for a few days. After I'd survived the 6 hour drive from Surrey, eaten some fantastic grub (thanks Vic) and slept like a log for a while we headed north into the Highlands.
+
 On the way we passed the location where Jared had taken <a href="http://flickr.com/photos/jaredearle/2581870560/">the HDR shot</a> he used in <a href="http://blog.23x.net/7/beginners-guide-to-hdr.html">the tutorial on his website</a> so we stopped to have a gander. What a great location for HDR!!
 
 <div style="float:left;background-color:black;color:white;padding:4px;margin-right:1em;margin-bottom:0.25em;text-align:center;"><a href="http://www.flickr.com/photos/stuartdallas/3003584259/" title="Rusty boats at Bowling by Stuart Dallas, on Flickr" style="border:0;"><img src="http://farm4.static.flickr.com/3073/3003584259_49556e26e0_m.jpg" width="240" height="159" alt="Boat at Bowling" border="0" style="margin-bottom:2px;" /></a><br /><span style="font-size:10px;">Rusty boats, Bowling on the River Clyde, Nov 2008</span></div>

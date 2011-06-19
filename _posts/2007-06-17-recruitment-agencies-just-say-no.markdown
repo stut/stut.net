@@ -2,14 +2,14 @@
 layout: "post"
 title: "Recruitment Agencies - Just Say No!"
 time: 22:11:36
-categories: 
+categories:
 - grr
 ---
 My last boss has written <a href="http://blog.assembleron.com/2007/06/17/why-recruitment-agencies-have-append-only-databases/" title="Why Recruitment Agencies have Append only Databases">a blog entry about my experiences with recruitment agencies</a> during that employment. What Nick doesn't mention is that in addition to the phonecalls I was getting upwards of ten emails a day from them at one point. I had a boiler-plate reply asking them to remove me from their databases, and to let me know when they've done that.
 
 Very few ever replied, and the few that did reply did so with some scary comments like "we can't remove people", or "marking people as ignored is the same as deleting here". Really really scary stuff. Have these people never heard of the data protection act?
 
-The main thing I've learnt about recruitment agencies in the nearly ten years I've been dealing with them from both sides of the coin, is that they do as little work as possible in order to find matches for the positions they have on their books. This usually includes spamming their database using very flimsy search criteria. Let me give you an example...<!--more-->
+The main thing I've learnt about recruitment agencies in the nearly ten years I've been dealing with them from both sides of the coin, is that they do as little work as possible in order to find matches for the positions they have on their books. This usually includes spamming their database using very flimsy search criteria. Let me give you an example...
 
 If you <a href="http://stut.net/cv/" title="Stuart Dallas - Curriculum Vitae">check my CV</a> you'll find I did some Delphi back in 1998-1999, and I now get at least one email a week from agencies asking if I'm interested in a Senior Delphi Developer position. A <strong>very</strong> brief scan of my CV would show that I'm not even qualified for such a position.
 

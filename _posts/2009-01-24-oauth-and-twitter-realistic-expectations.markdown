@@ -2,14 +2,14 @@
 layout: "post"
 title: "OAuth and Twitter: Realistic expectations"
 time: 19:43:37
-categories: 
+categories:
 - grr
 - technology
 ---
 <div style="float:right;background-color:black;color:white;padding:4px;margin-left:1em;margin-bottom:0.25em;text-align:center;"><a href="http://www.flickr.com/photos/7913872@N03/2964858067" title="View 'Closed, keep off' on Flickr.com"><img src="http://farm4.static.flickr.com/3144/2964858067_fc3af26d40_m.jpg" alt="Closed, keep off" border="0" width="240" height="160" align="right" /></a></div><a href="http://twitter.com/">Twitter</a> promised OAuth support a l-o-o-ong time ago, and it would appear to finally be here. <a href="http://al3x.net/">Alex Payne</a> sent a "<a href="http://groups.google.com/group/twitter-development-talk/browse_thread/thread/42486bd3d7d136d0/f0e89b742bf0033e?show_docid=f0e89b742bf0033e&pli=1">Call for OAuth beta participants</a>" to the developers list yesterday and had an overwhelming response. This predictably triggered a deluge of tweets and blog posts, but the one that caught my eye was on <a href="http://www.readwriteweb.com/">ReadWriteWeb</a> titled "<a href="http://www.readwriteweb.com/archives/why_twitters_new_oauth_matters.php">Why Twitter's New Security Solution Could Pave the Way to a Future Web of Mashups</a>".
 
 A number of things disturbed me about this post so I posted <a href="http://www.readwriteweb.com/archives/why_twitters_new_oauth_matters.php#comment-124285">a comment or two</a> but I believe the issues involved deserve more attention.
-<!--more-->
+
 First of all the post asserts that sharing our Twitter password with other websites and applications "makes a lot of us very uncomfortable". If doing that makes you feel uncomfortable, don't do it. And this is my main criticism regarding this post. OAuth is being hailed as a solution to sharing your password with third parties, and it is, but it doesn't protect your account once you've given a third party access. And surely the more important message is that if you care at all about the security of your Twitter account you should not be sharing your password with anyone but the Twitter site, an even then only after you've checked and double-checked that you're on the actual Twitter site.
 
 OAuth partially solves the problem in that third parties don't get your password, but they still get access rights to your account. They'll still be able to read your direct messages and post tweets and direct messages on your behalf.

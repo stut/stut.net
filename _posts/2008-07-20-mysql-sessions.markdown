@@ -9,7 +9,7 @@ A share-nothing approach to web development is great for scalability, but there 
 
 The default data store for PHP sessions is files, and that's fine so long as you only have one server, or you can tie each user to one server. When your app scales to the point where each request from a given user could go to one of any number of servers you need to replace this storage mechanism with something accessible from all of them. A database is the obvious choice.
 
-<!--more-->I wrote the code below to solve this problem for a site that get &gt; 1 million unique users per month (at the time of writing). It's designed for ease of use and maximum performance. The session table exists in its own database so it can be moved to a dedicated server if required. It would also be trivial to split the session data across several tables by hashing or modifying the session ID to indicate which shard it was on.
+I wrote the code below to solve this problem for a site that get &gt; 1 million unique users per month (at the time of writing). It's designed for ease of use and maximum performance. The session table exists in its own database so it can be moved to a dedicated server if required. It would also be trivial to split the session data across several tables by hashing or modifying the session ID to indicate which shard it was on.
 
 The code is liberally commented so I won't waste electrons describing it separately. Hopefully the way it works is straightforward and easy to understand. Don't forget to check out the <a href="http://php.net/session">session documentation on the PHP website</a> for full details about <a href="http://php.net/session-set-save-handler">putting in your own session handler</a>.
 

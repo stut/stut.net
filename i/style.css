@@ -92,6 +92,13 @@ h2 {
 	float: left;
 }
 
+h3 {
+	font-size:24px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	margin: 1em 0 0.5em 0;
+}
+
 #metadata {
 	clear: both;
 	font: 16px/24px 'Delicious', Arial, sans-serif;
@@ -105,9 +112,10 @@ h2 {
 }
 
 #morepostslink {
-	margin: 0.5em 0;
-	padding: 0.5em 0 0 0;
-	border-top: 1px dashed #aaa;
+}
+
+.indented {
+	margin-left: 0.45em;
 }
 
 #info {

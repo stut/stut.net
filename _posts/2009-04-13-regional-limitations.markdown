@@ -2,13 +2,13 @@
 layout: "post"
 title: "Regional Limitations"
 time: 05:18:42
-categories: 
+categories:
 - grr
 - technology
 ---
 It's 5am and I can't sleep. When this happens I usually <a href="http://boxee.tv/">fire up Boxee</a> and find something to watch, so that's what I did. I was happy to see that since the last time I used it Boxee appear to have added a bunch more internet sources, which is great. However, the following 15 minutes were nearly the most frustrating of my life so far.
 
-<!--more-->I understand regional restrictions. I don't necessarily agree with the reason they're there, but I understand why.
+I understand regional restrictions. I don't necessarily agree with the reason they're there, but I understand why.
 
 What I can't understand is why they're not shown up-front when browsing available content. On sites like <a href="http://joost.com/">Joost</a>, <a href="http://thulu.com/">Hulu</a> and others you have to actually start streaming content before you get told you can't view it. They clearly know where you're coming from but they still insist on not telling you what you can and can't watch until you actually try.
 

@@ -2,9 +2,9 @@
 layout: "post"
 title: "PHP Snippet: Array element access"
 time: 11:03:28
-categories: 
+categories:
 - technology
-tags: 
+tags:
 - php
 - snippet
 ---

@@ -2,7 +2,7 @@
 layout: "post"
 title: "Snippet: Singletons with PHP"
 time: 20:09:00
-categories: 
+categories:
 - misc
 ---
 Today's snippet describes the singleton pattern. The singleton pattern is a method of creating a class that statically maintains an instance of itself and ensures that no other instances can be created. This is useful for classes that implement app-wide services such as logging, DB access and other shared resources.
@@ -17,7 +17,7 @@ The basic requirements for a singleton class are as follows...
 
 That's basically it. Here's a simple example...
 
-<pre name="code" class="php">
+{% highlight php startinline %}
 class Singleton
 {
   static private $_instance = null;
@@ -66,17 +66,17 @@ class Singleton
     return $this-&gt;var;
   }
 }
-</pre>
+{% endhighlight %}
 
 This is an extremely simple example but it demonstrates all of the core concepts. You use this class as follows...
 
-<pre name="code" class="php">
+{% highlight php startinline %}
 $obj1 = Singleton::Instance();
-$obj1-&gt;SetVar('some value');
+$obj1->SetVar('some value');
 
 $obj2 = Singleton::Instance();
-echo $obj2-&gt;GetVar(); // This will echo 'some value'
-</pre>
+echo $obj2->GetVar(); // This will echo 'some value'
+{% endhighlight %}
 
 If you attempt to clone or unserialize an instance your script will fail with an error.
 

@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+<div id="metadata">&nbsp;</div>
+
+<div id="postlist">
+	<ul class="posts">
+	{% for post in site.tags[page.tag] %}
+		<div><a href="{{ post.url }}">{{ post.title }}</a><span style="color:#ccc;"> on {{ post.date | date: "%B %d, %Y" }}</span></div>
+	{% endfor %}
+	</ul>
+</div>

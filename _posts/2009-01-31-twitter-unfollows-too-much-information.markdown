@@ -2,15 +2,15 @@
 layout: "post"
 title: "Twitter unfollows: too much information?"
 time: 00:54:19
-categories: 
+categories:
 - misc
 ---
-<img src="http://stut.net/wp-content/uploads/2009/01/dont-follow-me-sign.gif" border="0" alt="dont_follow_me_sign.gif" width="310" height="310" align="right" />A couple of days ago I released a new <a href="http://twitapps.com/">TwitApps</a> tool called <a href="http://twitapps.com/follows/">Follows</a>. I know I haven't talked about TwitApps on this blog yet - that post is coming - but if you <a href="http://twitter.com/stut">follow me on Twitter</a> you should be aware of it.
+<img src="/assets/dont-follow-me-sign.gif" border="0" alt="dont_follow_me_sign.gif" width="310" height="310" align="right" />A couple of days ago I released a new <a href="http://twitapps.com/">TwitApps</a> tool called <a href="http://twitapps.com/follows/">Follows</a>. I know I haven't talked about TwitApps on this blog yet - that post is coming - but if you <a href="http://twitter.com/stut">follow me on Twitter</a> you should be aware of it.
 
 The Follows service monitors your followers on Twitter and sends you a daily, weekly or monthly email telling you who's followed and who's unfollowed you since your last email. Twitter itself has the facility to send you an email every time someone starts following you but does not offer any sort of notification when they stop.
 
 I can see why Twitter have done it this way. When someone starts following you it's likely you'll want to check out their tweets and you might decide to follow them back. The same logic doesn't really apply to when people stop following you, or does it?
-<!--more-->
+
 I built the Follows service primarily as a technical exercise, but also because I was curious to get some visibility on people who stop following me.
 
 A while back a service called <a href="http://useqwitter.com/">Qwitter</a> appeared on the scene that offered an unfollow notification service so I signed up. Unfortunately it stopped working shortly after that for unknown reasons, but in the few days while it did work it was quite enlightening. By paying attention to both follow and unfollow notifications it was possible to spot some interesting trends.

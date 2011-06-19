@@ -2,7 +2,7 @@
 layout: "post"
 title: "Misleading broadband ads"
 time: 23:03:35
-categories: 
+categories:
 - grr
 - technology
 ---
@@ -10,7 +10,7 @@ categories:
 
 Here are my thoughts on this prospect.
 
-<!--more-->That article states that...
+That article states that...
 
 <blockquote>
 Concerns centre on claims made by suppliers about the maximum speed customers can expect to receive from their broadband service against the speeds actually experienced.

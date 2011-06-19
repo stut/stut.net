@@ -11,7 +11,7 @@ Back when I started working on sites big enough for these activities to cause a 
 
 At the time all this happened I was mainly working with a site that ran on <a href="http://www.zend.com/en/products/platform/" target="_blank">Zend Platform</a>. One of the recent additions at the time was a module called <a href="http://www.zend.com/en/products/platform/product-comparison/job-queues" target="_blank">Job Queue</a> which appeared to do exactly what I needed. Unfortunately after spending a fair amount of time developing the infrastructure required to make it run the jobs I discovered that it really wasn't very well tested; it was far from production quality <a href="#fn1">[1]</a> and nowhere near reliable enough so I went back to the drawing board.
 
-<h2>Time passes...</h2>
+<h3>Time passes...</h3>
 
 After thinking about what I needed from such a system and what I had available I came up with an arrangement I've been using ever since with great success.
 
@@ -97,7 +97,7 @@ To get this to do something useful we configure it to run via cron every <em>n</
 
 Assuming your job queue is network accessible this system also scales across multiple machines with minimal changes. In fact the only change that's required it to incorporate a machine identified into the <em>processor_pid</em> field. This could be as simple as <em>&lt;machine&gt;_&lt;pid&gt;</em>; the key thing is that it's guaranteed to be unique to a given process across your entire infrastructure.
 
-<h2>Crashed jobs</h2>
+<h3>Crashed jobs</h3>
 
 One problem you may need to deal with is how to handle crashed jobs. This will happen, you can't get away from it and you'll need a way to detect and deal with it when it does. Luckily the job queue makes detection fairly straightforward.
 
@@ -107,7 +107,7 @@ If and when you've scaled across multiple machines this script essentially remai
 
 As far as what to do when you find a crashed job that's really something you need to consider on a case-by-case basis. At the very basic level the script could simply reset the <em>processor_pid</em> field to 0 so it gets run again. At the other end of the spectrum in a very flexible system you could have a way to run a job with a flag to indicate that it had previously crashed; each job can then deal with crashes in their own custom way.
 
-<h2>Potential additions</h2>
+<h3>Potential additions</h3>
 
 The components described above is just the core of a job queue system; you can add a lot of useful stuff above and around it to make it easier to manage and provide better feedback from your periodic tasks.
 
@@ -122,7 +122,7 @@ The components described above is just the core of a job queue system; you can a
 	</li>
 </ul>
 
-<h2>Final thoughts</h2>
+<h3>Final thoughts</h3>
 
 I hope that's useful to someone, I've certainly found it applicable to most web applications I now deal with. As I mentioned a few times you can implement the various parts in a number of ways, in particular how jobs are specified and how the scheduling works.
 

@@ -2,13 +2,13 @@
 layout: "post"
 title: "In search of models"
 time: 22:45:00
-categories: 
+categories:
 - photography
 ---
 <div style="float: left; line-height: 0.7em; padding: 0; margin: 0 0.5em 0.25em 0; border: 2px solid #000;"><a style="margin: 0; padding: 0;" title="View on Flickr.com" href="http://www.flickr.com/photos/7913872@N03/4004701674"><img style="padding: 0; margin: 2px; border: 1px solid #000;" src="http://farm4.static.flickr.com/3525/4004701674_4b09ac20d7_m.jpg" border="0" alt="" width="240" height="160" /></a></div>
 I'm looking to develop my portrait photography skills so I'm throwing this out there to see if anyone's interested in a free photo session. I take a lot of photos but aside from weddings I generally haven't had a lot of experience taking pictures of people. I want to change that.
 
-<!--more-->So here's the deal. I'm offering to do on-location photo shoots with you and anyone else you want to involve; just you, you and your partner, you and your friends, whatever. This will give me further experience of taking portraits and add to my portfolio. As such I will require that everyone involved signs a model release.
+So here's the deal. I'm offering to do on-location photo shoots with you and anyone else you want to involve; just you, you and your partner, you and your friends, whatever. This will give me further experience of taking portraits and add to my portfolio. As such I will require that everyone involved signs a model release.
 <div style="float: right; line-height: 0.7em; padding: 0; margin: 0 0 0.25em 0.5em; border: 2px solid #000;"><a style="margin: 0; padding: 0;" title="View 'Jared with a very big lens' on Flickr.com" href="http://www.flickr.com/photos/7913872@N03/3004433984"><img style="padding: 0; margin: 2px; border: 1px solid #000;" src="http://farm4.static.flickr.com/3291/3004433984_d23c4661be_m.jpg" border="0" alt="Jared with a very big lens" width="160" height="240" /></a></div>
 In return you'll get a CD containing full size image files of the best shots from the shoot and you're welcome to do anything non-commercial with them. If you want to use them commercially you'll need to get my permission, but I don't see that ever being a problem. I'm also more than happy to get them professionally printed and optionally mounted.
 

@@ -2,10 +2,8 @@
 layout: "post"
 title: "Wii Tennis: 2017"
 time: 23:00:00
-categories: 
+categories:
 - misc
 ---
-<p>
-<a href="http://stut.net/blog/wp-content/uploads/2007/05/wiitennis.jpg" title="Wii Tennis Skill"><img src="http://stut.net/blog/wp-content/uploads/2007/05/wiitennis.thumbnail.jpg" alt="Wii Tennis Skill" align="right" /></a>
+<img src="/assets/wiitennis.jpg" alt="Wii Tennis Skill" align="right" />
 Big moment this morning - I increased my Wii Tennis skill past 2000. I've been frustratingly hovering around 1950 for the past few weeks, and this morning I finally broke through the 2000 barrier. Dead chuffed I is!!
-</p>

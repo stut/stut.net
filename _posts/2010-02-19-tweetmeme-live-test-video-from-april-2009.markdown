@@ -2,14 +2,14 @@
 layout: "post"
 title: "TweetMeme Live Test Video from April 2009"
 time: 01:14:10
-categories: 
+categories:
 - cool
 - projects
 - technology
 ---
 The other day I was continuing my long-term quest to sort through all the flotsam and jetsam of accumulated crap on my hard drive when I came across the following video (click through if you don't see the video below). Recorded in April 2009, it shows the first version of the <a href="http://www.tweetmeme.com/">TweetMeme</a> Live functionality without any rate or minimum retweet restrictions. As you can see it moved pretty quickly.
 
-<!--more--><p style="text-align:center;"><center><object width="500" height="405"><param name="movie" value="http://www.youtube-nocookie.com/v/IdzvCoNncgY&hl=en_US&fs=1&color1=0x3a3a3a&color2=0x999999&border=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube-nocookie.com/v/IdzvCoNncgY&hl=en_US&fs=1&color1=0x3a3a3a&color2=0x999999&border=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="500" height="405"></embed></object></center></p>
+<p style="text-align:center;"><center><object width="500" height="405"><param name="movie" value="http://www.youtube-nocookie.com/v/IdzvCoNncgY&hl=en_US&fs=1&color1=0x3a3a3a&color2=0x999999&border=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube-nocookie.com/v/IdzvCoNncgY&hl=en_US&fs=1&color1=0x3a3a3a&color2=0x999999&border=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="500" height="405"></embed></object></center></p>
 
 Bear in mind that these are unique URLs, not simply repeats of URLs already seen. Between seeing a URL in a tweet and it appearing on this page the system has followed any redirects, grabbed and parsed the contents of the page and stuffed it into a database, and it does it all in near-realtime. Pretty impressive stuff if you ask me.
 

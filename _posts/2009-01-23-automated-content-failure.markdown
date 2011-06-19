@@ -2,7 +2,7 @@
 layout: "post"
 title: "Automated content failure"
 time: 15:54:02
-categories: 
+categories:
 - photography
 - funny
 ---
@@ -10,7 +10,7 @@ categories:
 A couple of months back I got an email request via my Flickr account from <a href="http://www.schmap.com/">Schmap.com</a> asking if they could include <a href="http://www.flickr.com/photos/stuartdallas/2965700582/">one of my photo's</a> in their next update. I rarely say no when politely asked for permission so I happily followed the link and approved it.
 
 I just got a follow-up email from them saying the update had gone live and did indeed include that photo. However, it's just wrong, so very very wrong.
-<!--more-->
+
 The photo is of the beach at Southsea taken from the pier. It's a pebble beach. It's tagged with both "<a href="http://www.flickr.com/photos/stuartdallas/tags/southsea/">southsea</a>" and "<a href="http://www.flickr.com/photos/stuartdallas/tags/pebblebeach/">pebble beach</a>" and the title is "<a href="<a href="http://www.flickr.com/photos/stuartdallas/2965700582/">Southsea beach</a>".
 
 The article they've put this photo on is about ... you guessed it, Pebble Beach, Monterey and Carmel. All I can assume is that no actual person has reviewed it before being published. I just hope the photo doesn't put people off visiting Pebble Beach - I can assure you it's nothing like Southsea.

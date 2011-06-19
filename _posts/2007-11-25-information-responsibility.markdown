@@ -2,12 +2,12 @@
 layout: "post"
 title: "Information Responsibility"
 time: 23:54:18
-categories: 
+categories:
 - misc
 ---
 I've previously posted about <a href="http://stut.net/blog/2007/11/04/personal-info-on-facebook/" title="Personal info on Facebook">people sharing personal information on Facebook</a> without any regard for their own privacy. On Friday the BBC ran a story about how <a href="http://news.bbc.co.uk/1/hi/technology/7108627.stm" title="Young warned over social websites">young people could be damaging their future careers with details they put on social network sites</a>.
 <blockquote><font size="2">Some 71% of 2,000 14 to 21-year-olds said they would not want colleges or employers to do a web search on them before they had removed some material.</font></blockquote>
-If you ask me they deserve to have problems getting a job. There is a level of personal responsibility that everyone should be able to shoulder.  There are very few jobs that don't involve keeping information secure, and if you fail to protect your own privacy how can you reasonably expect to be trusted to do the same for others.<!--more-->
+If you ask me they deserve to have problems getting a job. There is a level of personal responsibility that everyone should be able to shoulder.  There are very few jobs that don't involve keeping information secure, and if you fail to protect your own privacy how can you reasonably expect to be trusted to do the same for others.
 
 You could argue that your Facebook profile is secure if you've used the privacy controls to prevent public access to your information. But is everyone aware that by default your profile is accessible by everyone in the networks and groups you join?
 

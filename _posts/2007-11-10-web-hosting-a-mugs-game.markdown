@@ -2,15 +2,17 @@
 layout: "post"
 title: "Web hosting - a mugs game"
 time: 04:06:26
-categories: 
+categories:
 - technology
 ---
 
 <blockquote>It is with great regret that I must inform you that SharedServer.net will cease trading at the end of this year. This has been a difficult decision to make, but for various reasons it is not practical to continue.</blockquote>
-I wrote this in an email to my customers last weekend. After 10 years of running a web hosting service as "a hobby" I've decided that it's no longer practical to continue with it.  I've had several customers reply wanting to know why, most also saying that they were very happy with the service which is always nice to hear. I can't go into some of the reasons yet - I'll post those when I am able to - but hopefully the following will go some way to explaining my decision.<!--more-->
+I wrote this in an email to my customers last weekend. After 10 years of running a web hosting service as "a hobby" I've decided that it's no longer practical to continue with it.  I've had several customers reply wanting to know why, most also saying that they were very happy with the service which is always nice to hear. I can't go into some of the reasons yet - I'll post those when I am able to - but hopefully the following will go some way to explaining my decision.
 
 Let's start with a graph...
-<p style="text-align: center"><img src="http://stut.net/blog/wp-content/uploads/2007/11/email-year.png" alt="Yearly email for SharedServer.net" /></p>
+
+<p style="text-align: center"><img src="/assets/email-year.png" alt="Yearly email for SharedServer.net" /></p>
+
 This shows the average number of emails processed sampled every 5 minutes. The green part is total emails, the blue line indicates how many of those were spam. As you can see there has been a gradual increase in spm over the past 4-5 months. What this graph doesn't show is the processing power needed to check these emails for viruses, spam and against several blacklists.
 
 As should be obvious from the graph the current mail server was provisioned in early December 2006. For a while it was more than adequate for the load, but recently it's been showing signs of a breakdown.
