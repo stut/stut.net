@@ -2,68 +2,76 @@
 layout: "post"
 title: "Apache Log Pretty Printer"
 time: 23:00:00
-categories: 
+categories:
 - misc
 ---
 Here's something I knocked up a while back to pretty-print Apache log files. Written in PHP, works with combined logs, should work with common too. It was requested by Fred, so here it be for all to see.
 
 Save as logparse.php, chmod +x it and use in a fashion similar to...
-<blockquote> tail -f /var/log/httpd-access.log | logparse.php</blockquote>
+
+{% highlight bash %}
+tail -f /var/log/httpd-access.log | logparse.php
+{% endhighlight %}
+
 Here's the code...
-<blockquote>#!/usr/local/bin/php
-&lt;?php
-$hostscache = '/tmp/logparsehostcache'; if (file_exists($hostscache))
-$hosts = unserialize(file_get_contents($hostscache));
-else
-$hosts = array();
 
-while ($line = trim(fgets(STDIN)))
-{
-//print $line;
-preg_match('/^(.*?) \- \- \[(.*?)\/(.*?)\/(.*?):(.*?):(.*?):(.*?) .*?\] \"(.*?) (.*?) /i', $line, $matches);
-//print_r($matches);
+{% highlight php %}
+#!/usr/local/bin/php
+<?php
+	$hostscache = '/tmp/logparsehostcache';
+	if (file_exists($hostscache))
+		$hosts = unserialize(file_get_contents($hostscache));
+	else
+		$hosts = array();
 
-list($full, $ip, $day, $month, $year, $hour, $minute, $second, $method, $url) = $matches;
+	while ($line = trim(fgets(STDIN)))
+	{
+		//print $line;
+		preg_match('/^(.*?) \- \- \[(.*?)\/(.*?)\/(.*?):(.*?):(.*?):(.*?) .*?\] \"(.*?) (.*?) /i', $line, $matches);
+		//print_r($matches);
 
-if (preg_match('/(\/favicon.ico)|(\/images\/)|(\/system\/)|(\/includes\/)|(\/page\.html)/i', $url))
-continue;
+		list($full, $ip, $day, $month, $year, $hour, $minute, $second, $method, $url) = $matches;
 
-if (!isset($hosts[$ip]))
-{
-$cmd = "host $ip";
-$hosts[$ip] = trim(`$cmd`);
-if (strpos($hosts[$ip], '(') === false)
-{
-$hosts[$ip] = substr(array_pop(split(' ', $hosts[$ip])), 0, -1);
-if ($hosts[$ip] == 'reached')
-$hosts[$ip] = $ip;
-}
-else
-$hosts[$ip] = $ip;
+		if (preg_match('/(\/favicon.ico)|(\/images\/)|(\/system\/)|(\/includes\/)|(\/page\.html)/i', $url))
+			continue;
 
-$len = strlen($hosts[$ip]);
-if ($len &gt; 30)
-$hosts[$ip] = substr($hosts[$ip], $len-30);
-elseif ($len &lt; 30)
-$hosts[$ip] = str_pad($hosts[$ip], 30, ' ', STR_PAD_LEFT);
-}
+		if (!isset($hosts[$ip]))
+		{
+			$cmd = "host $ip";
+			$hosts[$ip] = trim(`$cmd`);
+			if (strpos($hosts[$ip], '(') === false)
+			{
+				$hosts[$ip] = substr(array_pop(split(' ', $hosts[$ip])), 0, -1);
+				if ($hosts[$ip] == 'reached')
+					$hosts[$ip] = $ip;
+			}
+			else
+				$hosts[$ip] = $ip;
 
-print $hosts[$ip]." $year-$month-$day $hour:$minute:$second ";
+			$len = strlen($hosts[$ip]);
+			if ($len > 30)
+				$hosts[$ip] = substr($hosts[$ip], $len-30);
+			elseif ($len < 30)
+				$hosts[$ip] = str_pad($hosts[$ip], 30, ' ', STR_PAD_LEFT);
+		}
 
-$len = strlen($method);
-if ($len &gt; 4)
-print substr($method, $len-4);
-elseif ($len &lt; 4)
-print str_pad($method, 4);
-else
-print $method;
+		print $hosts[$ip]." $year-$month-$day $hour:$minute:$second ";
 
-print " $url\n";
-}
+		$len = strlen($method);
+		if ($len > 4)
+			print substr($method, $len-4);
+		elseif ($len < 4)
+			print str_pad($method, 4);
+		else
+			print $method;
 
-$fp = fopen($hostscache, 'w');
-if ($fp)
-{
-fwrite($fp, serialize($hosts));
-fclose($fp);
-}</blockquote>
+		print " $url\n";
+	}
+
+	$fp = fopen($hostscache, 'w');
+	if ($fp)
+	{
+		fwrite($fp, serialize($hosts));
+		fclose($fp);
+	}
+{% endhighlight %}
