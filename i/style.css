@@ -4,10 +4,10 @@
 */
 
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
+h1, h2, h3, h4, h5, h6, p, pre,
+a, abbr, acronym, address, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
+strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
@@ -50,7 +50,7 @@ table {
 /* end reset */
 
 body {
-	font: 20px/29px 'Delicious', Arial, sans-serif;
+	font: 20px/29px 'Georgia', Sans-serif;
 	letter-spacing: 0;
 }
 
@@ -69,7 +69,7 @@ strong {
 
 blockquote {
 	font-style: italic;
-	margin: 0.5em 1.5em 1em 1.5em;
+	margin: 1em 1.5em 1em 1.5em;
 }
 
 .indented {
@@ -106,7 +106,7 @@ h3 {
 
 #metadata {
 	clear: both;
-	font: 16px/24px 'Delicious', Arial, sans-serif;
+	font: 16px/24px 'Georgia', Sans-serif;
 	font-weight: normal;
 	font-style: italic;
 	margin-bottom: 1em;
@@ -162,6 +162,6 @@ div.related_posts h4 {
 	margin: 1em auto 1.5em auto;
 	text-align: center;
 	clear: both;
-	font: 14px/22px 'Delicious', Arial, sans-serif;
+	font: 14px/22px 'Georgia', Sans-serif;
 	border-top: 1px solid #aaa;
 }
