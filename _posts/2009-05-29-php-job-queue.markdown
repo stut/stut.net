@@ -13,7 +13,7 @@ At the time all this happened I was mainly working with a site that ran on <a hr
 
 <h3>Time passes...</h3>
 
-After thinking about what I needed from such a system and what I had available I came up with an arrangement I've been using ever since with great success.
+After thinking about what I needed from such a system and what I had available I came up with an architecture I've been using ever since with great success.
 
 The core of the system is a DB table and a PHP script. The table contains the definition of jobs that need running and the script, erm, runs them.
 
@@ -60,7 +60,7 @@ The following is a list of the basic steps the script performs. For this example
 update `job_queue`
 set `processor_pid` = "$pid"
 where `run_at` <= unix_timestamp()
-&nbsp;&nbsp;and `processor_pid` = 0
+  and `processor_pid` = 0
 order by run_at asc
 limit 1
 {% endhighlight %}
@@ -73,6 +73,8 @@ limit 1
 		<div style="padding-left: 1.5em; font-family: monospace;">
 			select * from `job_queue`<br />
 			where `processor_pid` = "$pid"
+			order by `run_at`
+			limit 1
 		</div>
 		Note that these SQL statements (step 2 and this one) atomically grab a job and lock it. If you're using a different storage system for your queue you'll need to lock it while you select a job to run and then mark it as in progress.
 	</li>
@@ -95,7 +97,7 @@ limit 1
 
 To get this to do something useful we configure it to run via cron every <em>n</em> minutes where <em>n</em> depends upon the anticipated size of your job queue. For example running it every minute will automatically scale it up to 60 concurrent jobs at any one time. Running it every 5 minutes will reduce this to 12, and so on. There's also nothing stopping you putting more than one line into the crontab so it runs two processes every minute which increases concurrent processors to 120.
 
-Assuming your job queue is network accessible this system also scales across multiple machines with minimal changes. In fact the only change that's required it to incorporate a machine identified into the <em>processor_pid</em> field. This could be as simple as <em>&lt;machine&gt;_&lt;pid&gt;</em>; the key thing is that it's guaranteed to be unique to a given process across your entire infrastructure.
+Assuming your job queue is network accessible this system also scales across multiple machines with minimal changes. In fact the only change that's required it to incorporate a machine identifier into the <em>processor_pid</em> field. This could be as simple as <em>&lt;machine&gt;_&lt;pid&gt;</em>; the key thing is that it's guaranteed to be unique to a given process across your entire infrastructure.
 
 <h3>Crashed jobs</h3>
 
@@ -103,7 +105,7 @@ One problem you may need to deal with is how to handle crashed jobs. This will h
 
 On a single machine you can implement a script (either run via cron separately or indeed run by the job queue) that will check that for each job that has a <em>processor_pid</em> > 0 there is a PHP process running with that PID.
 
-If and when you've scaled across multiple machines this script essentially remains the same except that you need to run it on every machine that runs the job queue and filter the PID's you check.
+If and when you've scaled across multiple machines this script essentially remains the same except that you need to run it on every machine that runs the job queue and filter the PIDs you check.
 
 As far as what to do when you find a crashed job that's really something you need to consider on a case-by-case basis. At the very basic level the script could simply reset the <em>processor_pid</em> field to 0 so it gets run again. At the other end of the spectrum in a very flexible system you could have a way to run a job with a flag to indicate that it had previously crashed; each job can then deal with crashes in their own custom way.
 
