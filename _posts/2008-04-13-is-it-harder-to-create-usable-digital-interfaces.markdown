@@ -2,9 +2,9 @@
 layout: "post"
 title: "Is it harder to create usable digital interfaces?"
 time: 12:39:04
-categories: 
+categories:
 - technology
-tags: 
+tags:
 - digital
 - usability
 - software-usability
@@ -19,7 +19,7 @@ On the most basic level there is also a fundamental difference in complexity bet
 
 On his point about successful copies needing to work in the same way as existing products I agree to a certain extent, but mainly from a commercial point of view. It's pretty safe to say that the user-friendliness of any product can be improved, but radical departures from well-known interaction are very difficult to sell so improvements tend to be incremental.
 
-I personally thing designing great user experiences in the digital world is harder than it is in the physical world, but purely because it's a new world to the vast majority of people. In the digital world I think one of the main problems is that most systems (both hardware and software) are designed by technical people who are far more interested in solving the technical problems than concerning themselves with the user experience. I get the impression this is changing slowly but I wouldn't hold my breath.
+I personally think that designing great user experiences in the digital world is harder than it is in the physical world, but purely because it's a new world to the vast majority of people. In the digital world I think one of the main problems is that most systems (both hardware and software) are designed by technical people who are far more interested in solving the technical problems than concerning themselves with the user experience. I get the impression this is changing slowly but I wouldn't hold my breath.
 
 For me the key thing to do when designing a software feature is to forget as much of what you know about software as possible and approach the problem as if you rarely go near a computer. The other day my mother managed to accidentally lock her Vista laptop (presumably with WinKey+L) and the screen it presented her with was one she'd never seen before so she started to panic thinking she'd lost a whole load of work. While this accidental locking may be an edge case for a developer it's one that I'm sure more than a few people have triggered and paniced over. A little more thought about how the locked screen looks could have eased the panic without compromising the purpose of the feature.
 
