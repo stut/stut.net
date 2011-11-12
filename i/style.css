@@ -63,7 +63,7 @@ a:hover {
 	text-decoration: underline;
 }
 
-strong {
+strong, b {
 	font-weight: bold;
 }
 
@@ -131,6 +131,10 @@ p {
 	margin: 0.5em 0 1em 0;
 }
 
+em {
+	font-style: italic;
+}
+
 ul {
 	margin: 0.5em 0 1em 2.5em;
 }
@@ -149,6 +153,10 @@ ol li {
 	margin-bottom: 0.5em;
 }
 
+table th {
+	font-weight: bold;
+}
+
 #post h1, #post h2 {
 	float: none;
 }
@@ -164,4 +172,13 @@ div.related_posts h4 {
 	clear: both;
 	font: 14px/22px 'Georgia', Sans-serif;
 	border-top: 1px solid #aaa;
+}
+
+.gist {
+	font-size: 0.6em;
+	line-height: 1.35em;
+}
+.gist-highlight {
+	max-height: 300px;
+	overflow: auto;
 }
