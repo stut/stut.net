@@ -14,7 +14,7 @@ Since I was doing Ruby at the time I decided to switch to PHP for this quick pro
 
 Here's a video of the code in action...
 
-<center><iframe width="640" height="390" src="http://www.youtube.com/embed/djTP0Y7v9fw" frameborder="0" allowfullscreen></iframe></center>
+<center><iframe width="460" height="281" src="http://www.youtube.com/embed/djTP0Y7v9fw" frameborder="0" allowfullscreen></iframe></center>
 
 I've put <a href="https://github.com/3ft9/fortunestower">the quick 'n' dirty code up on GitHub</a>. Run it by executing play.php. It uses very simple logic to make decisions...
 

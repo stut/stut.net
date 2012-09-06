@@ -11,7 +11,7 @@ I feel like I wasted large parts of my childhood by going through the "standard"
 
 Now that you know that you'll probably be more able to appreciate my appreciation of the following video...
 
-<center><iframe width="640" height="360" src="http://www.youtube-nocookie.com/embed/zDZFcDGpL4U?rel=0" frameborder="0" allowfullscreen></iframe></center>
+<center><iframe width="460" height="260" src="http://www.youtube-nocookie.com/embed/zDZFcDGpL4U?rel=0" frameborder="0" allowfullscreen></iframe></center>
 
 I can't adequately express how much I think <strong>every single person on the planet needs to watch that video</strong>. Aside from the awesome animation style (<a href="http://www.cognitivemedia.co.uk/">see more of this on the Cognitive Media site</a>), the way <a href="http://sirkenrobinson.com/">Ken Robinson</a> describes the assembly line style of education that we consider to be normal is dead on.
 
@@ -19,7 +19,7 @@ We've applied the "advances" of the industrial revolution to education, and it d
 
 A little while ago I posted the following video of Sir Ken's talk from a TED conference in 2006. In this talk he puts forward the idea that schools kill creativity.
 
-<center><iframe width="640" height="480" src="http://www.youtube-nocookie.com/embed/iG9CE55wbtY?rel=0" frameborder="0" allowfullscreen></iframe></center>
+<center><iframe width="460" height="260" src="http://www.youtube-nocookie.com/embed/iG9CE55wbtY?rel=0" frameborder="0" allowfullscreen></iframe></center>
 
 I agree completely. I've seen it. I've experienced it. I've fought against it.
 
@@ -35,7 +35,7 @@ ADHD is no different. ADHD is what "professionals" have taken to labeling kids w
 
 Take, for example, <a href="http://en.wikipedia.org/wiki/Clifford_Stoll">Clifford Stoll</a>. I <strong>love</strong> this guy. He epitomises the way kids want to be; the way kids <strong>are</strong>. The way we spend years conditioning our kids to regard as "bad behaviour".
 
-<center><iframe width="640" height="480" src="http://www.youtube-nocookie.com/embed/Gj8IA6xOpSk?rel=0" frameborder="0" allowfullscreen></iframe></center>
+<center><iframe width="460" height="260" src="http://www.youtube-nocookie.com/embed/Gj8IA6xOpSk?rel=0" frameborder="0" allowfullscreen></iframe></center>
 
 Make sure you watch it to the end and pay attention to how animated he is when he tells the story at the end. Note how that expression moves from his body to his voice when he gets to the point of the story.
 

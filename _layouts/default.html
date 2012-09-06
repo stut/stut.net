@@ -1,25 +1,50 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
-	<head profile="http://gmpg.org/xfn/11">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<title>{{ page.title }}</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta name="description" content="Ramblings of a random software engineer" />
-		<link rel="stylesheet" href="/i/style.css?v=1" type="text/css" charset="utf-8" />
+		<meta name="author" content="Stuart Dallas">
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="/i/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" charset="utf-8">
+		<link href="/i/css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" charset="utf-8">
+		<link href="/i/css/theme.css" rel="stylesheet" type="text/css" charset="utf-8">
 		<link rel="stylesheet" href="/i/hl.css?v=1" type="text/css" charset="utf-8">
 		<link rel="alternate" type="application/rss+xml" title="Stut.net RSS Feed" href="http://stut.net/feed.xml" />
-		<link rel='index' title='Stut.net' href='http://stut.net/' />
+		<link rel="index" title="Stut.net" href="http://stut.net/" />
 	</head>
-
 	<body>
-		<div id="container">
-			<h1><a href="/">Stut.net</a></h1>
-{{ content }}
+		<div class="navbar navbar-fixed-top">
+			<div class="container">
+				<div class="row">
+					<div class="span2 logo"><a href="/">STUT.NET</a></div>
+					<div class="offset1 span3 right">
+						the random ramblings of a<br />
+						random software engineer
+					</div>
+				</div>
+			</div>
 		</div>
-		<div id="footer">
-			Copyright &copy; 2002-2011 Stuart Dallas
+		<div class="container">
+			<div class="row">
+				<div class="span6 content">
+{{ content }}
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="navbar navbar-fixed-bottom">
+			Copyright &copy; 2002-2012 Stuart Dallas
 			&middot;
 			<a href="http://about.me/stut">about.me</a>
-		</div>
+		</footer>
+		<script type="text/javascript" src="//use.typekit.net/xtf7gug.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<script src="/i/js/jquery.js"></script>
+		<script src="/i/js/bootstrap/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-486229-4']);
@@ -30,6 +55,6 @@
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 			})();
 		</script>
-		<script language="javascript" src="http://uk1.adducer.net/adcs.js"></script>
+		<!-- script language="javascript" src="http://uk1.adducer.net/adcs.js"></script -->
 	</body>
 </html>

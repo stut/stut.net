@@ -7,6 +7,6 @@ categories:
 
 An excellent little video on how data travels around the internet.
 
-<center><iframe width="640" height="390" src="http://www.youtube.com/embed/a5837LcDHfE" frameborder="0" allowfullscreen></iframe></center>
+<center><iframe width="460" height="281" src="http://www.youtube.com/embed/a5837LcDHfE" frameborder="0" allowfullscreen></iframe></center>
 
 So... now you know!

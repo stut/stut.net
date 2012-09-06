@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+<h1><a href="{{ page.url }}">{{ page.title }}</a></h1>
 <div id="post">
 	<div id="metadata">
 		Published on {{ page.date | date: "%B %d, %Y" }}
@@ -22,8 +22,7 @@ layout: default
 {% endif %}
 <div id="disqus_thread"></div>
 <script type="text/javascript">
-var disqus_shortname = 'stut'; // required: replace example with your forum shortname
-// var disqus_identifier = 'unique_dynamic_id_1234';
+var disqus_shortname = 'stut';
 var disqus_url = 'http://stut.net{{ page.url }}';
 (function() {
 var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

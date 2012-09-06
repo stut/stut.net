@@ -11,7 +11,7 @@ So, the iPhone 4S has been announced, and the big story is Siri. I'm absolutely 
 
 Here's the demo video...
 
-<center><iframe width="640" height="360" src="http://www.youtube-nocookie.com/embed/Dd2vo_9euOY?rel=0" frameborder="0" allowfullscreen></iframe></center>
+<center><iframe width="460" height="260" src="http://www.youtube-nocookie.com/embed/Dd2vo_9euOY?rel=0" frameborder="0" allowfullscreen></iframe></center>
 
 The genius of this is not that it lets you send a text by talking to the phone. Siri can do that. The genius of this is two-fold. First, and most importantly for the driving example they focus on, is that you don't need to touch or even look at the phone to trigger the thing to respond to you. It's Star Trekky - always listening for you to speak the magic phrase. And second, it's not a Google app. A third-party app can hook into the voice recognition and text-to-speech engines. Just think of the possibilities!
 

@@ -1,0 +1,98 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+
+.navbar {
+	background-color: #666;
+	color: #ddd;
+	border-bottom: 1px solid #444;
+}
+.navbar .logo {
+	font-size: 36px;
+	line-height: 40px;
+	color: inherit;
+	font-family: inherit;
+	font-weight: bold;
+	margin: 7px 0 0 0;
+	text-rendering: optimizelegibility;
+}
+.navbar .right {
+	padding-top: 0.8em;
+	font-size: 0.8em;
+	text-align: center;
+	line-height: 1em;
+}
+.navbar a,
+.navbar a:link,
+.navbar a:visited {
+	color: #fff;
+	padding: 0 0.5em;
+}
+.navbar a:hover {
+	color: #99f;
+	text-decoration: none;
+	padding: 0 0.5em;
+}
+.indented {
+	padding-left: 20px;
+}
+h1 {
+	font-family: sans-serif;
+	font-size: 24px;
+	line-height: 1em;
+	font-weight: bold;
+	margin-bottom: 0;
+	text-rendering: optimizelegibility;
+	font-weight: lighter;
+}
+#post,
+#post p,
+#post li,
+.related_posts {
+	font-family: "chaparral-pro","Georgia",serif;
+	font-size: 16px;
+	line-height: 1.5em;
+}
+#post h2 {
+	font-family: "chaparral-pro","Georgia",serif;
+	font-size: 20px;
+	margin: 0.75em 0 0 0;
+}
+#post h3 {
+	font-family: "chaparral-pro","Georgia",serif;
+	font-size: 18px;
+	margin: 0.75em 0 0 0;
+}
+.related_posts h4,
+.related_posts li {
+	font-size: 0.9em;
+}
+#morepostslink {
+	margin: 0.5em 0;
+}
+#metadata {
+	margin-top: 2px;
+	padding-bottom: 0.75em;
+	margin-bottom: 0.5em;
+	border-bottom: 1px dotted #ccc;
+	font-style: italic;
+	font-size: 0.9em;
+	line-height: 1em;
+}
+footer {
+	text-align: center;
+	padding: 5px;
+	font-size: 0.8em;
+}
+.gist {
+	text-align: left;
+	line-height: 1em;
+	font-size: 14px;
+}
+.highlight pre, .highlight pre code {
+	background-color: #000;
+}
+iframe[width="640"] {
+	margin-left: -90px;
+}
