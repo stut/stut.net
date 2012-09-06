@@ -9,10 +9,9 @@
 		<!--[if lt IE 9]>
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
-		<link href="/i/css/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css" charset="utf-8">
-		<link href="/i/css/bootstrap/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" charset="utf-8">
-		<link href="/i/css/theme.css" rel="stylesheet" type="text/css" charset="utf-8">
-		<link rel="stylesheet" href="/i/hl.css?v=1" type="text/css" charset="utf-8">
+		<link href="{% cloud_files /i/css/bootstrap/bootstrap.min.css %}" rel="stylesheet" type="text/css" charset="utf-8">
+		<link href="{% cloud_files /i/css/theme.css %}" rel="stylesheet" type="text/css" charset="utf-8">
+		<link rel="stylesheet" href="{% cloud_files /i/hl.css %}" type="text/css" charset="utf-8">
 		<link rel="alternate" type="application/rss+xml" title="Stut.net RSS Feed" href="http://stut.net/feed.xml" />
 		<link rel="index" title="Stut.net" href="http://stut.net/" />
 	</head>
@@ -43,8 +42,8 @@
 		</footer>
 		<script type="text/javascript" src="//use.typekit.net/xtf7gug.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-		<!-- script src="/i/js/jquery.js"></script -->
-		<!-- script src="/i/js/bootstrap/bootstrap.min.js"></script -->
+		<!-- script src="{% cloud_files /i/js/jquery.js %}"></script -->
+		<!-- script src="{% cloud_files /i/js/bootstrap/bootstrap.min.js %}"></script -->
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-486229-4']);
