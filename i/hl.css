@@ -1,9 +1,9 @@
 .highlight {
     background: none repeat scroll 0 0 #000000;
-    border-radius: 6px 6px 6px 6px;
+    border-radius: 2px 2px 2px 2px;
     margin-bottom: 1em;
     overflow: auto;
-    padding: 1em;
+    padding: 8px;
 }
 .highlight pre, .highlight code, .highlight tt {
     font: 0.8em/1.2 'monaco','andale mono','lucida console',monospace;
