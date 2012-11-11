@@ -1,0 +1,48 @@
+html,
+body {
+}
+#wrap {
+  padding-bottom: 70px;
+}
+#footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60px;
+  text-align: center;
+}
+#footer {
+  background-color: #c5c5c5;
+  border-top: 1px solid #a5a5a5;
+  color: #222;
+}
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.container {
+  width: auto;
+  max-width: 680px;
+  font-size: 18px;
+  line-height: 26px;
+}
+.container .credit {
+  margin: 20px 0;
+}
+#footer,
+#footer p,
+.metadata {
+  font-size: 14px;
+}
+.icon-padleft {
+  margin-left: 8px;
+}
+ol li,
+ul li {
+  padding-bottom: 8px;
+}

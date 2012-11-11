@@ -1,49 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+  <head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{{ page.title }}</title>
 		<meta name="description" content="Ramblings of a random software engineer" />
 		<meta name="author" content="Stuart Dallas">
-		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="{% cloud_files /i/css/bootstrap/bootstrap.min.css %}" rel="stylesheet" type="text/css" charset="utf-8">
-		<link href="{% cloud_files /i/css/theme.css %}" rel="stylesheet" type="text/css" charset="utf-8">
-		<link rel="stylesheet" href="{% cloud_files /i/hl.css %}" type="text/css" charset="utf-8">
 		<link rel="alternate" type="application/rss+xml" title="Stut.net RSS Feed" href="http://stut.net/feed.xml" />
 		<link rel="index" title="Stut.net" href="http://stut.net/" />
-	</head>
-	<body>
-		<div class="navbar navbar-fixed-top">
+    <link href="/i/20121111/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/i/20121111/css/stut.net.css" rel="stylesheet">
+    <link href="/i/20121111/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+		<![endif]-->
+  </head>
+  <body>
+		<div id="wrap">
 			<div class="container">
-				<div class="row">
-					<div class="span2 logo"><a href="/">STUT.NET</a></div>
-					<div class="offset1 span3 right">
-						the random ramblings of a<br />
-						random software engineer
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="span6 content">
 {{ content }}
-					</div>
-				</div>
 			</div>
 		</div>
-		<footer class="navbar navbar-fixed-bottom">
-			Copyright &copy; 2002-2012 Stuart Dallas
-			&middot;
-			<a href="http://about.me/stut">about.me</a>
-		</footer>
-		<script type="text/javascript" src="//use.typekit.net/xtf7gug.js"></script>
-		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-		<!-- script src="{% cloud_files /i/js/jquery.js %}"></script -->
-		<!-- script src="{% cloud_files /i/js/bootstrap/bootstrap.min.js %}"></script -->
+{% if page.title != 'Stut.net' %}
+		<div id="footer">
+		  <div class="container">
+				<p class="credit">
+					<i class="icon-barcode"></i> This is <a href="http://stut.net/">Stut.net</a> <i class="icon-exclamation-sign icon-padleft"></i> Copyright &copy; 2002-2012 Stuart Dallas <i class="icon-question-sign icon-padleft"></i> <a href="http://about.me/stut">about.me</a>
+				</p>
+		  </div>
+		</div>
+{% endif %}
+    <script src="/i/20121111/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
 			_gaq.push(['_setAccount', 'UA-486229-4']);
@@ -55,5 +42,5 @@
 			})();
 		</script>
 		<script language="javascript" src="http://uk1.adducer.net/adcs.js"></script>
-	</body>
+  </body>
 </html>

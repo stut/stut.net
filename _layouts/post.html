@@ -2,14 +2,16 @@
 layout: default
 ---
 
-<h1><a href="{{ page.url }}">{{ page.title }}</a></h1>
-<div id="post">
-	<div id="metadata">
-		Published on {{ page.date | date: "%B %d, %Y" }}
-		{% if page.categories.size > 0 %} in {{ page.categories | category_links }}{% endif %}{% if page.tags.size > 0 %} tagged {{ page.tags | tag_links }}{% endif %}
-	</div>
-{{ content }}
+<div class="page-header">
+	<h1><a href="{{ page.url }}">{{ page.title }}</a></h1>
+	<p class="metadata muted">
+  	<i class="icon-calendar" title="Published on"></i> {{ page.date | date: "%B %d, %Y" }}
+		{% if page.categories.size > 0 %} <i class="icon-folder-open icon-padleft" title="Categorised as"></i> {{ page.categories | category_links }}{% endif %}{% if page.tags.size > 0 %} <i class="icon-tags icon-padleft" title="Tagged with"></i> {{ page.tags | tag_links }}{% endif %}
+	</p>
 </div>
+
+{{ content }}
+
 {% if site.related_posts.size > 0 %}
 <div class="related_posts">
 	<h4>Possibly related posts (automatically generated)...</h4>
@@ -20,6 +22,7 @@ layout: default
 	</ul>
 </div>
 {% endif %}
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
 var disqus_shortname = 'stut';

@@ -6,8 +6,8 @@ categories:
 - misc
 tags:
 - php
+published: true
 ---
-
 HTTP authentication is the easiest way to make a page or area of a website secure. It's very easy to accomplish with pure PHP, so no web server configuration is required making it a lot more portable.
 
 This function implements a very simple HTTP Basic Auth authentication system. Simply call it before you do anything else in your script, pass it an array of valid users (username => password), an optional description of what's being secured and it will do the rest.
