@@ -7,6 +7,7 @@
 }
 .highlight pre, .highlight code, .highlight tt {
     font: 0.8em/1.2 'monaco','andale mono','lucida console',monospace;
+    background: none repeat scroll 0 0 #000000;
 }
 .highlight pre {
     font-size: 1em;
