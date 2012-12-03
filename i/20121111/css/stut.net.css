@@ -45,4 +45,6 @@ body {
 ol li,
 ul li {
   padding-bottom: 8px;
+  line-height: 26px;
+  font-size: 18px;
 }
