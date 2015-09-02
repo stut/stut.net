@@ -11,7 +11,7 @@ title: Stut.net
 	<div id="postlist">
 		<div class="indented">
 {% for post in site.posts limit:10 %}
-			<div><a href="{{ post.url }}">{{ post.title }}</a><span style="color:#ccc;"> on {{ post.date | date: "%B %d, %Y" }}</span><br /><small>{{ post.excerpt }}</small></div>
+			<div><a href="{{ post.url }}">{{ post.title }}</a><span style="color:#ccc;"> on {{ post.date | date: "%B %d, %Y" }}</span></div>
 {% endfor %}
 		</div>
 {% if site.posts.size > 10 %}

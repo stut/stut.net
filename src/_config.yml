@@ -1,8 +1,7 @@
-auto: false
-server: false
+destination: ../www
 lsi: true
 markdown: rdiscount
-pygments: true
+highlighter: true
 permalink: /:year/:month/:day/:title/
 category_dir: category
 tag_dir: tag
