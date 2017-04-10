@@ -1,8 +1,0 @@
----
-layout: "post"
-title: "MyToons"
-time: 00:00:00
-categories: 
-- cool
----
- I've just come across a new site called <a href="http://www.mytoons.com/">MyToons</a>. It's kinda like <a href="http://www.youtube.com/">YouTube</a> for animations. Definitely worth checking out.
