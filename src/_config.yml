@@ -1,14 +1,5 @@
 destination: ../www
-lsi: true
-markdown: rdiscount
 highlighter: true
 permalink: /:year/:month/:day/:title/
 category_dir: category
 tag_dir: tag
-cloud_files:
-  enabled: true
-  datacentre: uk
-  container: static.stut.net
-  cname: http://static.stut.net/
-  #upload_prefix:
-  force_upload: false
