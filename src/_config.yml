@@ -1,4 +1,3 @@
-destination: ../www
 highlighter: true
 permalink: /:year/:month/:day/:title/
 category_dir: category
